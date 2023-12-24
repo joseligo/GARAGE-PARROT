@@ -1,0 +1,289 @@
+/* Redéfinition de la charte graphique */
+:root {
+  --primary: #34495e;
+  --secondary: #bac3cd;
+  --third: #B09865;
+  --gris-sombre: #2D2D2D;
+  --bs-nav-link-color: var(--primary);
+  --bs-link-color: var(--primary);
+  --bs-link-hover-color: var(--secondary);
+  --bs-primary-rgb: var(--primary);
+  color: whitesmoke;
+}
+
+/* Lien de navigation */
+.nav-link {
+  font-weight: 600;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  text-decoration: underline var(--third) 3px;
+}
+
+/* Boutons */
+.btn-primary {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: var(--primary);
+  --bs-btn-border-color: var(--primary);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: var(--secondary);
+  --bs-btn-hover-border-color: var(--secondary);
+  --bs-btn-focus-shadow-rgb: 49, 132, 253;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: var(--secondary);
+  --bs-btn-active-border-color: var(--secondary);
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #4f4f4f;
+  --bs-btn-disabled-border-color: #343434;
+}
+
+.btn-outline-dark {
+  --bs-btn-color: whitesmoke;
+  --bs-btn-bg: var(--gris-sombre);
+  --bs-btn-border-color: whitesmoke;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: rgba(245, 245, 245, 0.4);
+  --bs-btn-hover-border-color: var(--secondary);
+  --bs-btn-focus-shadow-rgb: 49, 132, 253;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: var(--secondary);
+  --bs-btn-active-border-color: var(--secondary);
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #4f4f4f;
+  --bs-btn-disabled-border-color: #343434;
+}
+
+/* stylisation de l'index */
+body {
+  color: whitesmoke;
+}
+.div-title {
+  background-image: url("../images/photo_header.png");
+}
+
+.div-primary {
+  background-color: var(--primary);
+  text-align: center;
+}
+
+.encart {
+  width: 80%;
+  border: solid var(--third);
+  padding: auto;
+}
+
+h2 {
+  color: var(--third)
+}
+
+/* Partie service */
+.container-service,
+.container-vignette,
+.container-avis {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 20px;
+}
+
+@media screen and (min-width: 768px) {
+
+  .container-service,
+  .container-vignette,
+  .container-avis {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 900px) {
+
+  .container-service,
+  .container-vignette,
+  .container-avis {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.container-avis {
+  grid-gap: 40px;
+}
+
+h4 {
+  color: var(--third);
+  margin-top: 10px;
+}
+
+.card-service img,
+.card-vignette img {
+  width: 100%;
+}
+
+/* Partie vignettes voitures index */
+.div-grise {
+  background-color: var(--gris-sombre);
+}
+.card-vignette {
+  position: relative;
+}
+
+span.text_holder {
+  font-weight: 500;
+  background-color: #000;
+  background-color: rgba(21, 21, 21, .78);
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items:center ;
+  justify-content:center;
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  transition: opacity .4s ease-in-out;
+  -webkit-transition: opacity .4s ease-in-out;
+  -moz-transition: opacity .4s ease-in-out;
+  -o-transition: opacity .4s ease-in-out;
+  -ms-transition: opacity .4s ease-in-out;
+  visibility: visible;
+  overflow: hidden;
+  width: 100%;
+  z-index: 200
+}
+
+span.text_holder:hover {
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+
+/* Style des avis */
+.card-avis {
+  border: solid var(--third);
+  padding: 10px;
+}
+
+.card-avis .star {
+  font-size: 1.5em;
+  color: var(--third);
+}
+
+.container-avis span {
+  color: var(--secondary);
+  font-size: 12px;
+  font-style: italic;
+}
+
+.container-avis p {
+  margin-top: 10px;
+  margin: 10px;
+  text-align: justify;
+  text-justify: auto;
+}
+.input-form-avis {
+  border: 2px solid white,
+}
+
+/* End avis style */
+.question {
+  color: var(--primary);
+  padding: 20px;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.question i {
+  width: 150px;
+  height: 150px;
+  color: var(--primary);
+}
+
+/* Style formulaire avis */
+/* .rating {
+  width: 226px;
+  margin: 0 auto 1em;
+  font-size: 45px;
+  overflow:hidden;
+}
+.rating input {
+  position: absolute;
+  opacity: 0;
+}
+.rating label {
+  cursor: pointer;
+  border-bottom: 2px solid currentColor;
+}
+.rating a {
+  float: right;
+  color: #aaa;
+  text-decoration: none;
+  -webkit-transition: color .4s;
+  -moz-transition: color .4s;
+  -o-transition: color .4s;
+  transition: color .4s;
+}
+.rating a:hover,
+		.rating a:hover ~ a,
+		.rating a:focus,
+		.rating a:focus ~ a		{
+			color: var(--third);
+			cursor: pointer;
+		} */
+footer {
+  color: whitesmoke;
+}
+
+.wrapper-rating {
+  font-size: 3em;
+  line-height: 0;
+  margin: 0;
+  --coulFillHover: #FD0;
+  /* couleur de fond au survol */
+  --coulFillSelected: #FFC;
+  /* couleur de fond selected */
+  --coulStrokeHover: var(--third);
+  /* couleur de bord au survol */
+  --coulStrokeSelected: #B09865;
+  /* couleur de bord selected */
+}
+
+.wrapper-rating label {
+  cursor: pointer;
+  border-bottom: 2px solid currentColor;
+}
+
+.wrapper-rating input {
+  position: absolute;
+  opacity: 0;
+}
+
+.wrapper-rating input:checked~* label {
+  --coulFillSelected: #FAFAFA;
+  /* couleur de fond par défaut */
+  --coulStrokeSelected: #CCC;
+  /* couleur de bord par défaut */
+  border-bottom: 2px solid transparent;
+}
+
+.wrapper-rating .star {
+  display: inline-flex;
+  color: var(--coulStrokeSelected);
+  cursor: pointer;
+}
+
+.wrapper-rating .star svg {
+  width: 1em;
+  height: 1em;
+  transition: .25s;
+  stroke-width: 1;
+  stroke: var(--coulStrokeSelected);
+  fill: var(--coulFillSelected);
+}
+
+.wrapper-rating .star:hover>label svg {
+  fill: var(--coulFillHover);
+  stroke: var(--coulStrokeHover);
+}
+
+
+/* Admin */

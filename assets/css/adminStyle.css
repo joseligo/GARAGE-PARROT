@@ -1,0 +1,14 @@
+.btn-add-user, .btn-add {
+  color: whitesmoke;
+  font-weight: 700;
+  border-radius: 50%;
+  border: 1px solid grey;
+  background-color: green;
+}
+.hidden {
+  display: none;
+}
+
+.display-none {
+  display:none;
+}
