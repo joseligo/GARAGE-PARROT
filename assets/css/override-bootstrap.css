@@ -198,6 +198,12 @@ span.text_holder:hover {
   color: var(--primary);
 }
 
+/* Style page annonce */
+.container-annonce {
+  background: linear-gradient(var(--secondary), whitesmoke);
+  color: var(--primary);
+}
+
 /* Style formulaire avis */
 /* .rating {
   width: 226px;

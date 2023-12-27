@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-class Car 
+class Car implements \JsonSerializable
 {
   protected int $idCar;
   protected string $brand;
@@ -85,4 +85,14 @@ class Car
   {
     return $this->idCar;
   }
+  public function jsonSerialize()
+    {
+        return [
+            'idCar' => $this->idCar,
+            'brand' => $this->brand,
+            'model' => $this->model,
+            'yearOfManufacture' => $this->yearOfManufacture,
+            'price' => $this->price,
+        ];
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Controller\PageController;
+use App\Controller\AnnonceController;
 
 class Controller
 {
@@ -16,11 +17,11 @@ class Controller
                         $controller = new PageController();
                         $controller->route();
                         break;
-                    // case 'auth':
-                    //     //charger controleur auth
-                    //     $controller = new AuthController();
-                    //     $controller->route();
-                    //     break;
+                    case 'annonces':
+                        //charger controleur auth
+                        $controller = new AnnonceController();
+                        $controller->route();
+                        break;
                     // case 'user':
                     //     $controller = new UserController();
                     //     $controller->route();

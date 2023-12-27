@@ -14,7 +14,7 @@ spl_autoload_register();
       <p class="lead dt mb-4 fw-bold">Vente et réparation de véhicules anciens</p>
       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
         <a href="#container-service" class="btn btn-primary btn-lg px-4 gap-3">En savoir plus</a>
-        <a href="annonces.php" class="btn btn-primary btn-lg px-4">Voir les voitures</a>
+        <a href="?controller=annonces&action=list" class="btn btn-primary btn-lg px-4">Voir les voitures</a>
       </div>
     </div>
   </div>
@@ -42,7 +42,7 @@ spl_autoload_register();
     <?php require_once './templates/template/carsHome.php' ?>
   </div>
   <div class="d-flex align-items-center justify-content-center mt-5">
-    <a href="annonces.php" class="btn btn btn-outline-dark btn-lg px-4">Voir toutes les voitures</a>
+    <a href="?controller=annonces&action=list" class="btn btn btn-outline-dark btn-lg px-4">Voir toutes les voitures</a>
   </div>
 </div>
 <!-- Section Avis -->
