@@ -20,9 +20,8 @@ require_once _ROOTPATH_ . '/templates/header.php';
         </form>
       </div>
     </div>
-
     <!-- Affichage des annonces (alimenté par JS) -->
-    <div class="row" id="test">
+    <div class="row" id="card-car-container">
     </div>
     <!-- Affichage de la pagination (alimenté par JS) -->
     <div class="pagination" id="pagination">

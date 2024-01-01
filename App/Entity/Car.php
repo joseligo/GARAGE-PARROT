@@ -93,6 +93,10 @@ class Car implements \JsonSerializable
             'model' => $this->model,
             'yearOfManufacture' => $this->yearOfManufacture,
             'price' => $this->price,
+            'mainImage' => $this->mainImage,
+            'title' => $this->getTitle(),
+            'comment' => $this->comment,
+            'dateAnnonce' => $this->announcementDate,
         ];
     }
 }
