@@ -15,20 +15,21 @@ require_once _ROOTPATH_ . '/templates/header.php';
 
     <div>
       <div>
-        <form id="formFilter" name="formFilter" class="d-flex flex-row justify-content-around gap-3">
+        <form id="formFilter" name="formFilter" class="d-flex flex-column flex-lg-row justify-content-around gap-3">
           <?php require_once('./templates/template/filter.php') ?>
         </form>
       </div>
-    </div>
-    <!-- Affichage des annonces (alimenté par JS) -->
-    <div class="row" id="card-car-container">
     </div>
     <!-- Affichage de la pagination (alimenté par JS) -->
     <div class="pagination" id="pagination">
 
     </div>
+    <!-- Affichage des annonces (alimenté par JS) -->
+    <div class="row" id="card-car-container">
+    </div>
+
   </div>
-  
+
 </div>
 
 <script type="text/javascript" src="./assets/script/showCars.js"></script>

@@ -1,4 +1,4 @@
-fetch("./App/Api/CarsApi.php?action=minMax")
+fetch("./App/Api/CarsApibis.php?action=minMax")
     .then((response) => {
       if (response.ok) {
         return response.json();
@@ -89,7 +89,7 @@ function setDoubleRange(configDoubleRange)
 	setDefaultValues();
 	
 	function dragStart(e){ draggable = true; targetToMove = e.target.className.split(' ')[0]; largeurBarre = barre.scrollWidth; margeLeftBarre = barre.getBoundingClientRect().left; }
-	function dragStop(){ if(!draggable){return false} else {draggable = false; targetToMove = false; createFormData(); showCarsFilter()}}
+	function dragStop(){ if(!draggable){return false} else {draggable = false; targetToMove = false; createFormData(); showCarsFilter(6,1)}}
 
 	function drag(e)
 	{

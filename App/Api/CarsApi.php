@@ -9,7 +9,7 @@ include_once '../Repository/Repository.php';
 include_once '../Db/Mysql.php';
 include_once '../Entity/Car.php';
 
-class CarsApi extends Repository
+class CarsApiBefore extends Repository
 {
 
   function minMax()
