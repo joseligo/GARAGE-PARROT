@@ -10,7 +10,7 @@ fetch("./App/Api/CarsApi.php?action=minMax")
         myList.innerHTML =
           "<p>Toutes nos voitures ont trouvé preneur. N'hésitez pas à nous contacter, de nouvelles oportunités seront bientôt disponibles</p>";
       } else {
-				showCars(3,1);
+				showCars(6,1);
         setDoubleRange({
 					element: '#doubleRange',
 					type: 'Price',
