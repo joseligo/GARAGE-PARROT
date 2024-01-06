@@ -111,8 +111,9 @@ function createCard(element) {
   paragraphCar.className = "card-text";
   paragraphCar.textContent = `${element.comment}`;
   div2.appendChild(paragraphCar);
-  let buttonCar = document.createElement("button");
+  let buttonCar = document.createElement("a");
   buttonCar.className = "btn btn-primary";
+  buttonCar.setAttribute("href", `?controller=annonces&action=annonce&id=${element.idCar}`)
   buttonCar.textContent = "Voir le véhicule";
   div2.appendChild(buttonCar);
   let dateAnnonce = document.createElement("small");

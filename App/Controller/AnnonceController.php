@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\TimetableRepository;
+use App\Repository\CarsRepository;
 
 class AnnonceController extends Controller
 {
@@ -14,6 +15,9 @@ class AnnonceController extends Controller
                     case 'list':
                         //charger controleur liste
                         $this->listAnnonces();
+                        break;
+                    case 'annonce':
+                        $this->getAnnonceById($_GET['id']);
                         break;
                     default:
                         throw new \Exception("Cette action n'existe pas : " . $_GET['action']);
@@ -28,10 +32,6 @@ class AnnonceController extends Controller
         }
     }
 
-    /*
-  Exemple d'appel depuis l'url
-      ?controller=page&action=home
-  */
     protected function listAnnonces()
     {
         try {
@@ -55,4 +55,25 @@ class AnnonceController extends Controller
             ]);
         }
     }
+    protected function getAnnonceById($idCar)
+    {
+        try {
+            $timeTableRepository = new TimetableRepository();
+            $listTimeTable = $timeTableRepository->getTimeTable();
+
+            $carRepository = new CarsRepository();
+            $car = $carRepository->getCarById($idCar);
+
+
+            $this->render('page/annonce', [
+                "listTimeTable" => $listTimeTable,
+                "car" => $car
+            ]);
+        } catch (\Exception $e) {
+            $this->render('errors/default', [
+                'error' => $e->getMessage()
+            ]);
+        }
+    
+}
 }

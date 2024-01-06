@@ -99,4 +99,40 @@ class Car implements \JsonSerializable
             'dateAnnonce' => $this->announcementDate,
         ];
     }
+
+  /**
+   * Get the value of carburetion
+   */
+  public function getCarburetion(): string
+  {
+    return $this->carburetion;
+  }
+
+  /**
+   * Set the value of carburetion
+   */
+  public function setCarburetion(string $carburetion): self
+  {
+    $this->carburetion = $carburetion;
+
+    return $this;
+  }
+
+  /**
+   * Get the value of milage
+   */
+  public function getMilage(): int
+  {
+    return $this->milage;
+  }
+
+  /**
+   * Set the value of milage
+   */
+  public function setMilage(int $milage): self
+  {
+    $this->milage = $milage;
+
+    return $this;
+  }
 }
