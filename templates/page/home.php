@@ -20,6 +20,7 @@ spl_autoload_register();
   </div>
 </div>
 <!-- Section présentation des services -->
+<!-- Section présentation des services -->
 <div class="px-4 py-5 text-center div-primary">
   <div class="container d-flex align-items-center justify-content-center flex-column">
     <div class="encart text-center mb-4 py-5 px-5">

@@ -135,4 +135,58 @@ class Car implements \JsonSerializable
 
     return $this;
   }
+
+  /**
+   * Get the value of yearOfManufacture
+   */
+  public function getYearOfManufacture(): int
+  {
+    return $this->yearOfManufacture;
+  }
+
+  /**
+   * Set the value of yearOfManufacture
+   */
+  public function setYearOfManufacture(int $yearOfManufacture): self
+  {
+    $this->yearOfManufacture = $yearOfManufacture;
+
+    return $this;
+  }
+
+  /**
+   * Get the value of price
+   */
+  public function getPrice(): float
+  {
+    return $this->price;
+  }
+
+  /**
+   * Set the value of price
+   */
+  public function setPrice(float $price): self
+  {
+    $this->price = $price;
+
+    return $this;
+  }
+
+  /**
+   * Get the value of secondaryImage
+   */
+  public function getSecondaryImage(): array
+  {
+    return $this->secondaryImage;
+  }
+
+  /**
+   * Set the value of secondaryImage
+   */
+  public function setSecondaryImage(array $secondaryImage): self
+  {
+    $this->secondaryImage = $secondaryImage;
+
+    return $this;
+  }
 }

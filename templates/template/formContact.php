@@ -21,12 +21,16 @@
     <div>
       <div>
         <label for="subject" class="form-label">Sujet</label>
+        <?php if($_GET['action'] === "annonce") {?>
+          <input type = "text" readonly value ="<?= $car->getTitle() ?>">
+        <?php } else { ?>
         <select id="subject" name="subject" class="form-control" required>
           <option value="">--Indiquez le motif de votre message</option>
           <?php foreach($listSubject as $subject) { ?>
             <option value="<?=intval($subject[0])?>"><?=$subject[1]?></option>
           <?php } ?>
         </select>
+        <?php } ?>
       </div>
     <div class="mb-3">
       <label for="message" class="form-label">Votre message</label>
@@ -35,7 +39,7 @@
     </div>
 </div>
   <div class="container text-center">
-    <input type="submit" name="sendContact" value="Envoyer">
+    <input type="submit" name="sendContact" value="Envoyer" class="btn btn-outline-light btn-lg px-4 gap-3">
   </div>
 </form>
 </div>

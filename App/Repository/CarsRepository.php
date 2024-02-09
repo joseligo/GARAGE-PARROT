@@ -57,7 +57,22 @@ class CarsRepository extends Repository
     $response = $query->fetch($this->pdo::FETCH_ASSOC);
     $car = new Car($response['id_car'], $response['brand'], $response['model'], $response['carburetion'], $response['km'], $response['year'], $response['price'], $response['comment'], $response['date'], $response['main_image'], [], []);
     return $car;
+  }
+  public function getPicturesByIdCar($idCar): array
+  {
+    $sql = "SELECT path FROM Pictures
+    WHERE id_car = :idCar";
+    $query = $this->pdo->prepare($sql);
 
+    $query->bindParam(':idCar', $idCar, $this->pdo::PARAM_INT);
+
+    $query->execute();
+
+    $response = $query->fetchAll($this->pdo::FETCH_ASSOC);
+    foreach ($response as $picture) {
+      $lispicture[] = $picture['path'];
+    }
+    return $lispicture;
   }
 
   public function getCarsJson(int $limit = null): bool|string

@@ -63,7 +63,9 @@ class AnnonceController extends Controller
 
             $carRepository = new CarsRepository();
             $car = $carRepository->getCarById($idCar);
-
+            $listPicture = $carRepository->getPicturesByIdCar($idCar);
+            $car->setSecondaryImage($listPicture);
+            
 
             $this->render('page/annonce', [
                 "listTimeTable" => $listTimeTable,
