@@ -1,8 +1,8 @@
 <?php
 spl_autoload_register();
-define("_DOMAIN_", "localhost");
-var_dump (session_status());
 require_once './App/Db/Mysql.php';
+
+use App\Entity\User;
 // require_once './App/Tools/session.php';
 
 ?>
@@ -32,10 +32,10 @@ require_once './App/Db/Mysql.php';
         <li><a href="index.php" class="nav-link px-2 active">ACCUEIL</a></li>
         <li><a href="?controller=annonces&action=list" class="nav-link px-2">A VENDRE</a></li>
         <li><a href="contact.php" class="nav-link px-2">CONTACT</a></li>
-        <li><a href="<?php if (session_status() == 2) {
-                        echo ('indexAdmin.php');
+        <li><a href="<?php if (User::isLogged()) {
+                        echo ('?controller=admin&action=home');
                       } else {
-                        echo ('login.php');
+                        echo ('?controller=auth&action=login');
                       } ?>" class="nav-link px-2">Espace employés</a></li>
 
       </ul>

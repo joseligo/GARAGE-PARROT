@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Controller\PageController;
 use App\Controller\AnnonceController;
+use App\Controller\AdminController;
+
 
 class Controller
 {
@@ -22,17 +24,20 @@ class Controller
                         $controller = new AnnonceController();
                         $controller->route();
                         break;
-                    // case 'user':
-                    //     $controller = new UserController();
-                    //     $controller->route();
-                    //     break;
+                    case 'auth' :
+                        $controller = new AuthController();
+                        $controller->route();
+                        break;
+                    case 'admin':
+                        $controller = new AdminController();
+                        $controller->route();
+                        break;
                     // case 'movie':
                     //     $controller = new MovieController();
                     //     $controller->route();
                     //     break;
-                    // default:
-                    //     throw new \Exception("Le controleur n'existe pas");
-                    //     break;
+                    default:
+                        throw new \Exception("Le controleur n'existe pas");
                 }
             } else {
                 //Chargement la page d'accueil si pas de controleur dans l'url

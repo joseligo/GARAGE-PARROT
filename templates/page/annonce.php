@@ -1,6 +1,5 @@
 <?php
 require_once _ROOTPATH_ . '/templates/header.php';
-var_dump($car->getSecondaryImage());
 ?>
 
 <div class="container-annonce">
