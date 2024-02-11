@@ -87,7 +87,7 @@ class CarsApi extends Repository
     echo $listCarsJSON;
   }
 
-  function carsFilters($priceMin, $priceMax, $kmMin, $kmMax, $yearMin, $yearMax, int $limit = null, int $page = null)
+  public function carsFilters($priceMin, $priceMax, $kmMin, $kmMax, $yearMin, $yearMax, int $limit = null, int $page = null)
   {
     $sql = "SELECT id_car, km, main_image,  year, price, date, comment, brand, model, carburetion, CONCAT(brand, model, year) as title FROM Cars
   LEFT JOIN carburetion ON Cars.id_carburetion = carburetion.id_carburetion
@@ -131,6 +131,22 @@ class CarsApi extends Repository
     $listCarsJSON = json_encode($listCars);
     echo $listCarsJSON;
   }
+  public function getModel($brand) {
+    $sql = "SELECT * FROM Models WHERE id_brand = :idBrand";
+    $resultMessage = $this->pdo->prepare($sql);
+    $resultMessage->bindParam(':idBrand', $brand, $this->pdo::PARAM_INT);
+    $resultMessage->execute();
+    $resultList = $resultMessage->fetchAll($this->pdo::FETCH_ASSOC);
+    foreach($resultList as $result) {
+      $modelData = [
+          'idModel' => $result["id_model"],
+          'model' =>mb_convert_encoding($result["model"], 'UTF-8', 'ISO-8859-1' )
+      ];
+      $listModel[] = $modelData;
+  }
+  $data = json_encode($listModel);
+  echo $data;
+  }
 }
 
 if (isset($_GET['action'])) {
@@ -149,5 +165,8 @@ if (isset($_GET['action'])) {
   } elseif ($_GET['action'] === 'nbCarsFilter') {
     $carApi = new CarsApi();
     $carApi->nbCarsFilter($_POST['priceMin'], $_POST['priceMax'], $_POST['kmmin'], $_POST['kmmax'], $_POST['yearmin'], $_POST['yearmax']);
+  } elseif($_GET['action'] === 'getModels') {
+    $carApi = new CarsApi();
+    $carApi->getModel($_GET['brand']);
   }
 };

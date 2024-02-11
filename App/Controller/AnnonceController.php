@@ -19,6 +19,12 @@ class AnnonceController extends Controller
                     case 'annonce':
                         $this->getAnnonceById($_GET['id']);
                         break;
+                    case 'delete':
+                        $this->deleteAnnonce($_POST['carId']);
+                        break;
+                    case 'save':
+                        $this->saveAnnonce($_POST, $_FILES);
+                        break;
                     default:
                         throw new \Exception("Cette action n'existe pas : " . $_GET['action']);
                 }
@@ -65,7 +71,7 @@ class AnnonceController extends Controller
             $car = $carRepository->getCarById($idCar);
             $listPicture = $carRepository->getPicturesByIdCar($idCar);
             $car->setSecondaryImage($listPicture);
-            
+
 
             $this->render('page/annonce', [
                 "listTimeTable" => $listTimeTable,
@@ -76,6 +82,25 @@ class AnnonceController extends Controller
                 'error' => $e->getMessage()
             ]);
         }
-    
-}
+    }
+    protected function deleteAnnonce($idCar)
+    {
+        $carRepository = new CarsRepository();
+        $carRepository->deleteCar($idCar);
+        header('location:?controller=admin&action=annonces');
+    }
+    protected function saveAnnonce($postData, $filesData)
+    {
+        try {
+            $carRepository = new CarsRepository();
+            $mainImage = $carRepository->saveImage($filesData['mainImage']);
+            $idCar = $carRepository->saveCar($postData['brand'], $postData['model'], $postData['carburetion'], $postData['km'], $mainImage, $postData['year'], $postData['price'], $postData['comment']);
+            
+            header("location:?controller=annonces&action=annonce&id=$idCar");
+        } catch (\Exception $e) {
+            $this->render('errors/default', [
+                'error' => $e->getMessage()
+            ]);
+        }
+    }
 }

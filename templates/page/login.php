@@ -9,7 +9,7 @@ require_once _ROOTPATH_ . '/templates/header.php';
     <div class="alert alert-danger"><?= $error ?></div>
   <?php } ?>
 
-  <form action="#" method="POST">
+  <form action="" method="POST">
     <div class="mb-3">
       <label for="email" class="form-label">Email</label>
       <input type="email" name="email" id="email" class="form-control">

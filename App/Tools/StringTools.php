@@ -5,43 +5,69 @@ namespace App\Tools;
 class StringTools
 {
   //name display like John D. for John Doe
-  public static function anonymName($fist_name, $last_name) :string
+  public static function anonymName($fist_name, $last_name): string
   {
-    $name = ucfirst(strtolower($fist_name)).' '.strtoupper($last_name[0]).'.';
+    $name = ucfirst(strtolower($fist_name)) . ' ' . strtoupper($last_name[0]) . '.';
     return $name;
   }
   public static function slugify($text, string $divider = '-')
-{
-  // replace non letter or digits by divider
-  $text = preg_replace('~[^\pL\d]+~u', $divider, $text);
+  {
+    // replace non letter or digits by divider
+    $text = preg_replace('~[^\pL\d]+~u', $divider, $text);
 
-  // transliterate
-  $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+    // transliterate
+    $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
 
-  // remove unwanted characters
-  $text = preg_replace('~[^-\w]+~', '', $text);
+    // remove unwanted characters
+    $text = preg_replace('~[^-\w]+~', '', $text);
 
-  // trim
-  $text = trim($text, $divider);
+    // trim
+    $text = trim($text, $divider);
 
-  // remove duplicate divider
-  $text = preg_replace('~-+~', $divider, $text);
+    // remove duplicate divider
+    $text = preg_replace('~-+~', $divider, $text);
 
-  // lowercase
-  $text = strtolower($text);
+    // lowercase
+    $text = strtolower($text);
 
-  if (empty($text)) {
-    return 'n-a';
+    if (empty($text)) {
+      return 'n-a';
+    }
+
+    return $text;
   }
-
-  return $text;
-}
-public static function formatNameImage($file)
-{
-  $extension = '.'.pathinfo($file['name'], PATHINFO_EXTENSION );
-  $baseName = str_replace($extension, "", $file['name']);
-  $slugbaseName = self::slugify($baseName);
-  $nameImage = $slugbaseName.$extension;
-  return $nameImage;
-}
+  public static function formatNameImage($file)
+  {
+    $extension = '.' . pathinfo($file['name'], PATHINFO_EXTENSION);
+    $baseName = str_replace($extension, "", $file['name']);
+    $slugbaseName = self::slugify($baseName);
+    $nameImage = $slugbaseName . $extension;
+    return $nameImage;
+  }
+  /*
+        Transforme une chaine en camelCase (ou pascalCase si deuxième param à true)
+    */
+  public static function toCamelCase(string $value, $pascalCase = false): string
+  {
+    /*  
+            On remplace les tiret et underscore par des espaces, 
+            puis en met les premières lettres de chaque mot en majuscule avec ucword
+        */
+    $value = ucwords(str_replace(array('-', '_'), ' ', $value));
+    // On retire les espaces
+    $value = str_replace(' ', '', $value);
+    // Si le param $pasacalCase est à true, on met la première lettre en minuscule
+    if ($pascalCase === false) {
+      return lcfirst($value);
+    } else {
+      return $value;
+    }
+  }
+  /*
+        Transforme une chaine en pascalCase (lowerCamelCase) en appellant toCamelCase avec le deuxième param à true
+    */
+  public static function toPascalCase(string $value): string
+  {
+    return self::toCamelCase($value, true);
+  }
 }

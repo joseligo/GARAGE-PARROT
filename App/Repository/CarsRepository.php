@@ -70,9 +70,9 @@ class CarsRepository extends Repository
 
     $response = $query->fetchAll($this->pdo::FETCH_ASSOC);
     foreach ($response as $picture) {
-      $lispicture[] = $picture['path'];
+      $listpicture[] = $picture['path'];
     }
-    return $lispicture;
+    return $listpicture;
   }
 
   public function getCarsJson(int $limit = null): bool|string
@@ -81,17 +81,15 @@ class CarsRepository extends Repository
     $listCarsJSON = json_encode($listCars);
     return $listCarsJSON;
   }
-  public function deleteCars(int $idCar): void
+  public function deleteCar(int $idCar): void
   {
-
-    $sql = "DELETE FROM `Cars` WHERE id_car = :idCar";
+    $sql = "CALL delete_car(:idCar)";
     $query = $this->pdo->prepare($sql);
     $query->bindValue(":idCar", $idCar, $this->pdo::PARAM_INT);
     $query->execute();
   }
   public function saveCar(int $brand, int $model, int $carburetion, int $km, string $mainImage, int $year, int $price, string $comment)
   {
-
     $sql = "INSERT INTO `Cars` (`id_car`, `id_brand`, `id_model`, `id_carburetion`, `km`, `main_image`,`year`, `price`, `date`, `comment`) VALUES (NULL, :idBrand, :idModel, :carburetion, :km, :mainImage, :year, :price, NOW(), :comment);";
     $query = $this->pdo->prepare($sql);
     $query->bindParam(':idBrand', $brand, $this->pdo::PARAM_INT);
@@ -102,7 +100,9 @@ class CarsRepository extends Repository
     $query->bindParam(':year', $year, $this->pdo::PARAM_INT);
     $query->bindParam(':price', $price, $this->pdo::PARAM_INT);
     $query->bindParam(':comment', $comment, $this->pdo::PARAM_STR);
-    return $query->execute();
+    $query->execute();
+    $lastId = $this->pdo->lastInsertId();
+    return $lastId;
   }
   public function saveImage($file)
   {
@@ -112,7 +112,7 @@ class CarsRepository extends Repository
       $checkImage = getimagesize($file['tmp_name']);
       if ($checkImage !== false) {
         $fileName = uniqid() . '-' . StringTools::formatNameImage($file);
-        move_uploaded_file($file['tmp_name'], './App/assets/images/uploads/' . $fileName);
+        move_uploaded_file($file['tmp_name'], './assets/images/uploads/' . $fileName);
         return $fileName;
       }
     }
@@ -157,5 +157,20 @@ class CarsRepository extends Repository
       $listCarburetion[] = [$carburetion["id_carburetion"], $carburetion["carburetion"]];
     };
     return $listCarburetion;
+  }
+  public function getBrand()
+  {
+
+    $sql = "SELECT * FROM `Brands` ORDER BY id_brand";
+    $query = $this->pdo->prepare($sql);
+    $query->execute();
+
+    $response = $query->fetchAll($this->pdo::FETCH_ASSOC);
+
+    $listBrand = [];
+    foreach ($response as $brand) {
+      $listBrand[] = ['idBrand'=>$brand["id_brand"], 'nameBrand'=>$brand["brand"]];
+    };
+    return $listBrand;
   }
 }

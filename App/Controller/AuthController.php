@@ -52,9 +52,7 @@ class AuthController extends Controller
                     'last_name' => $user->getLastName(),
                     'role' => $user->getRole(),
                 ];
-                $this->render('page/admin/home', [
-                  'errors' => $errors,
-              ]);
+                header('location:?controller=admin&action=home');
             } else {
                 $errors[] = 'Email ou mot de passe incorrect';
             }

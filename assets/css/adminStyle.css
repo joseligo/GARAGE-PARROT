@@ -1,3 +1,6 @@
+body {
+  color:black;
+}
 .btn-add-user, .btn-add {
   color: whitesmoke;
   font-weight: 700;
@@ -11,4 +14,13 @@
 
 .display-none {
   display:none;
+}
+.container-crud-annonce {
+  display: flex;
+}
+.container-crud-annonce :first-child {
+  flex: 2 1 0;
+}
+.container-crud-annonce :last-child {
+  flex: 1 1 0;
 }

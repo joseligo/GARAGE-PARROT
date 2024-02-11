@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\CarsRepository;
 use App\Repository\TimetableRepository;
 
 class AdminController extends Controller
@@ -14,9 +15,13 @@ class AdminController extends Controller
           case 'home':
             $this->home();
             break;
-            // case 'annonce':
-            //     $this->getAnnonceById($_GET['id']);
-            //     break;
+          case 'annonces':
+            $this->getAnnonces();
+            break;
+          case 'delete':
+            $controller = new AnnonceController();
+            $controller->route();
+            break;
           default:
             throw new \Exception("Cette action n'existe pas : " . $_GET['action']);
         }
@@ -32,8 +37,29 @@ class AdminController extends Controller
   protected function home()
   {
     try {
-      $this->render('page/admin/home', [
-        'test' => 'test',
+      $this->render('page/adminHome', [
+        'user' => $_SESSION['user']
+      ]);
+    } catch (\Exception $e) {
+      $this->render('errors/default', [
+        'error' => $e->getMessage()
+      ]);
+    }
+  }
+  protected function getAnnonces()
+  {
+    try {
+      $carRepository = new CarsRepository();
+      $cars = $carRepository->getCars();
+      $listCarburation = $carRepository->getCarburetion();
+      $listBrand = $carRepository->getBrand();
+      // $listPicture = $carRepository->getPicturesByIdCar($idCar);
+      // $car->setSecondaryImage($listPicture);
+
+      $this->render('page/adminAnnonces', [
+        'listCars' => $cars,
+        'listCarburation' => $listCarburation,
+        'listBrand' => $listBrand
       ]);
     } catch (\Exception $e) {
       $this->render('errors/default', [
