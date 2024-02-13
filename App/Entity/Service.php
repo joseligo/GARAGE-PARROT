@@ -18,7 +18,6 @@ class Service
     $this->picture = $picture;
     $this->author = $author;
   }
-
   /**
    * Get the value of id
    */

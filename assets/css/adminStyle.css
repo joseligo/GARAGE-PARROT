@@ -2,12 +2,7 @@ body {
   color:black;
   min-height: 100vh;
 }
-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
+
 .btn-add-user, .btn-add {
   color: whitesmoke;
   font-weight: 700;
@@ -33,4 +28,8 @@ footer {
 }
 .picture-form{
   width: 150px;
+}
+.btn {
+  width: 100px;
+  height: 50px;
 }

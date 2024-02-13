@@ -3,8 +3,9 @@
 namespace App\Controller;
 
 use App\Controller\PageController;
-use App\Controller\AnnonceController;
 use App\Controller\AdminController;
+use App\Controller\AnnonceController;
+use App\Controller\ServiceController;
 
 
 class Controller
@@ -30,6 +31,10 @@ class Controller
                         break;
                     case 'admin':
                         $controller = new AdminController();
+                        $controller->route();
+                        break;
+                    case 'service' :
+                        $controller = new ServiceController();
                         $controller->route();
                         break;
                     // case 'movie':

@@ -50,7 +50,7 @@ if (!User::isLogged()) {
           </a>
         </li>
         <li>
-          <a href="servicesAdmin.php" class="nav-link text-white">
+          <a href="?controller=service&action=show" class="nav-link text-white">
             <svg class="bi pe-none me-2" width="16" height="16">
               <use xlink:href="#table"></use>
             </svg>

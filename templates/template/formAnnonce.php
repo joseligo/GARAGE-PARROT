@@ -64,7 +64,7 @@
       <?php } ?>
       <div>
         <label for="mainImage">Photo principale</label>
-        <input type="file" id="mainImage" name="mainImage" />
+        <input type="file" id="mainImage" name="mainImage" accept="image/png, image/jpeg" />
       </div>
     </div>
     <div>

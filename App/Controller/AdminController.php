@@ -26,6 +26,10 @@ class AdminController extends Controller
             $controller = new AnnonceController();
             $controller->route();
             break;
+          case 'service':
+            $controller = new AnnonceController();
+            $controller->route();
+            break;
           default:
             throw new \Exception("Cette action n'existe pas : " . $_GET['action']);
         }
@@ -66,7 +70,7 @@ class AdminController extends Controller
         'carJSON' => json_encode(""),
         'listCarburation' => $listCarburation,
         'listBrand' => $listBrand,
-        'listPicture' =>'',
+        'listPicture' => '',
         'values' => false
       ]);
     } catch (\Exception $e) {

@@ -29,9 +29,12 @@ spl_autoload_register();
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum assumenda amet vitae at error veritatis voluptatibus nesciunt accusantium quis quisquam in quod fugiat nemo nisi, saepe sapiente est soluta dolor!</p>
     </div>
     <div class="container-service" id="container-service">
-      <?php
-      require_once _ROOTPATH_ . '/templates/template/service.php';
+    <?php foreach ($services as $service) { 
+
+      require _ROOTPATH_ . '/templates/template/service.php';
+    }
       ?>
+
     </div>
   </div>
 </div>
