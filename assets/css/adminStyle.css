@@ -1,5 +1,12 @@
 body {
   color:black;
+  min-height: 100vh;
+}
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 .btn-add-user, .btn-add {
   color: whitesmoke;
@@ -23,4 +30,7 @@ body {
 }
 .container-crud-annonce :last-child {
   flex: 1 1 0;
+}
+.picture-form{
+  width: 150px;
 }

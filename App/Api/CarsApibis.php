@@ -147,6 +147,12 @@ class CarsApi extends Repository
   $data = json_encode($listModel);
   echo $data;
   }
+  public function deletePicture($idPicture){
+    $sql = "DELETE FROM Pictures WHERE id_picture = :idPicture";
+    $resultMessage = $this->pdo->prepare($sql);
+    $resultMessage->bindParam(':idPicture', $idPicture, $this->pdo::PARAM_INT);
+    return $resultMessage->execute();
+  }
 }
 
 if (isset($_GET['action'])) {
@@ -168,5 +174,8 @@ if (isset($_GET['action'])) {
   } elseif($_GET['action'] === 'getModels') {
     $carApi = new CarsApi();
     $carApi->getModel($_GET['brand']);
+  }elseif($_GET['action'] === 'deletePicture') {
+    $carApi = new CarsApi();
+    $carApi->deletePicture($_GET['picture']);
   }
 };

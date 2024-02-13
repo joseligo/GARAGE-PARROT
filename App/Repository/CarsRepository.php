@@ -60,7 +60,7 @@ class CarsRepository extends Repository
   }
   public function getPicturesByIdCar($idCar): array
   {
-    $sql = "SELECT path FROM Pictures
+    $sql = "SELECT * FROM Pictures
     WHERE id_car = :idCar";
     $query = $this->pdo->prepare($sql);
 
@@ -69,8 +69,9 @@ class CarsRepository extends Repository
     $query->execute();
 
     $response = $query->fetchAll($this->pdo::FETCH_ASSOC);
-    foreach ($response as $picture) {
-      $listpicture[] = $picture['path'];
+    $listpicture = [];
+    foreach ($response as $key => $picture) {
+      $listpicture['picture'.$key+1] = array("path" => $picture['path'], "id" => $picture['id_picture']);
     }
     return $listpicture;
   }
@@ -104,6 +105,25 @@ class CarsRepository extends Repository
     $lastId = $this->pdo->lastInsertId();
     return $lastId;
   }
+  public function modifyCar(int $idCar, int $brand, int $model, int $carburetion, int $km, string $mainImage, int $year, int $price, string $comment)
+  {
+    $sql = "UPDATE `Cars` 
+              SET `id_brand` = :idBrand, `id_model` = :idModel, `id_carburetion` = :idCarburetion, 
+              `km` = :km, `main_image` = :mainImage,`year` = :year, 
+              `price` = :price, `comment` = :comment
+              WHERE id_car = :idCar;";
+    $query = $this->pdo->prepare($sql);
+    $query->bindParam(':idCar', $idCar, $this->pdo::PARAM_INT);
+    $query->bindParam(':idBrand', $brand, $this->pdo::PARAM_INT);
+    $query->bindParam(':idModel', $model, $this->pdo::PARAM_INT);
+    $query->bindParam(':idCarburetion', $carburetion, $this->pdo::PARAM_INT);
+    $query->bindParam(':km', $km, $this->pdo::PARAM_INT);
+    $query->bindParam(':mainImage', $mainImage, $this->pdo::PARAM_STR);
+    $query->bindParam(':year', $year, $this->pdo::PARAM_INT);
+    $query->bindParam(':price', $price, $this->pdo::PARAM_INT);
+    $query->bindParam(':comment', $comment, $this->pdo::PARAM_STR);
+    $query->execute();
+  }
   public function saveImage($file)
   {
     $fileName = null;
@@ -116,6 +136,14 @@ class CarsRepository extends Repository
         return $fileName;
       }
     }
+  }
+  public function savePictureBdd($fileName, $idCar)
+  {
+    $sql = "INSERT INTO `Pictures` (`id_car`, `path`) VALUES (:idCar, :fileName);";
+    $query = $this->pdo->prepare($sql);
+    $query->bindParam(':idCar', $idCar, $this->pdo::PARAM_INT);
+    $query->bindParam(':fileName', $fileName, $this->pdo::PARAM_STR);
+    $query->execute();
   }
   function carsFilters($priceMin, $priceMax, $kmMin, $kmMax, $yearMin, $yearMax)
   {

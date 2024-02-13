@@ -22,6 +22,9 @@ class AnnonceController extends Controller
                     case 'delete':
                         $this->deleteAnnonce($_POST['carId']);
                         break;
+                    case 'edit':
+                        $this->editAnnonce($_POST['carIdEdit']);
+                        break;
                     case 'save':
                         $this->saveAnnonce($_POST, $_FILES);
                         break;
@@ -93,14 +96,51 @@ class AnnonceController extends Controller
     {
         try {
             $carRepository = new CarsRepository();
-            $mainImage = $carRepository->saveImage($filesData['mainImage']);
-            $idCar = $carRepository->saveCar($postData['brand'], $postData['model'], $postData['carburetion'], $postData['km'], $mainImage, $postData['year'], $postData['price'], $postData['comment']);
-            
+            if (isset($filesData['mainImage']) && $filesData['mainImage']['error'] == 0) {
+                $mainImage = $carRepository->saveImage($filesData['mainImage']);
+            } else {
+                $mainImage = $postData['mainImageUse'];
+            }
+            if ($postData['idCar']) {
+                $idCar = $postData['idCar'];
+                $carRepository->modifyCar($idCar, $postData['brand'], $postData['model'], $postData['carburetion'], $postData['km'], $mainImage, $postData['year'], $postData['price'], $postData['comment']);
+            } else {
+                $idCar = $carRepository->saveCar($postData['brand'], $postData['model'], $postData['carburetion'], $postData['km'], $mainImage, $postData['year'], $postData['price'], $postData['comment']);
+            }
+            if (isset($filesData['secondaryPicture'])) {
+                for ($i = 0; $i < count($filesData['secondaryPicture']['name']); $i++) {
+                    $pictureSecondaryList = ['name' => $filesData['secondaryPicture']['name'][$i], 'tmp_name' => $filesData['secondaryPicture']['tmp_name'][$i]];
+                    if($filesData['secondaryPicture']['error'][$i] == 0){
+                    $picture = $carRepository->saveImage($pictureSecondaryList);
+                    $carRepository->savePictureBdd($picture, $idCar);
+                    }
+                }
+            }
             header("location:?controller=annonces&action=annonce&id=$idCar");
         } catch (\Exception $e) {
             $this->render('errors/default', [
                 'error' => $e->getMessage()
             ]);
         }
+    }
+    protected function editAnnonce($idCar)
+    {
+        $carRepository = new CarsRepository();
+        $car = $carRepository->getCarById($idCar);
+        $listPicture = $carRepository->getPicturesByIdCar($idCar);
+        $car->setSecondaryImage($listPicture);
+        $carJSON = json_encode($car, JSON_FORCE_OBJECT | JSON_INVALID_UTF8_IGNORE);
+        // $carJSON = $car->jsonSerialize();
+        $listCarburation = $carRepository->getCarburetion();
+        $listBrand = $carRepository->getBrand();
+
+        $this->render('page/adminEditAnnonce', [
+            "car" => $car,
+            "carJSON" => $carJSON,
+            'listPicture' => json_encode($listPicture),
+            'listCarburation' => $listCarburation,
+            'listBrand' => $listBrand,
+            "values" => true
+        ]);
     }
 }

@@ -85,21 +85,6 @@ class Car implements \JsonSerializable
   {
     return $this->idCar;
   }
-  public function jsonSerialize()
-    {
-        return [
-            'idCar' => $this->idCar,
-            'brand' => $this->brand,
-            'model' => $this->model,
-            'yearOfManufacture' => $this->yearOfManufacture,
-            'price' => $this->price,
-            'mainImage' => $this->mainImage,
-            'title' => $this->getTitle(),
-            'comment' => $this->comment,
-            'dateAnnonce' => $this->announcementDate,
-        ];
-    }
-
   /**
    * Get the value of carburetion
    */
@@ -107,7 +92,6 @@ class Car implements \JsonSerializable
   {
     return $this->carburetion;
   }
-
   /**
    * Set the value of carburetion
    */
@@ -117,6 +101,25 @@ class Car implements \JsonSerializable
 
     return $this;
   }
+  public function jsonSerialize()
+    {
+        return [
+            'idCar' => $this->getIdCar(),
+            'brand' => $this->getBrand(),
+            'model' => $this->getModel(),
+            'carburetion' =>$this->getCarburetion(),
+            'yearOfManufacture' => $this->getYearOfManufacture(),
+            'milage' => $this->getMilage(),
+            'price' => $this->getPrice(),
+            'mainImage' => $this->getMainImage(),
+            'title' => $this->getTitle(),
+            'comment' => $this->getComment(),
+            'dateAnnonce' => $this->getAnnouncementDate()
+        ];
+    }
+
+  
+  
 
   /**
    * Get the value of milage

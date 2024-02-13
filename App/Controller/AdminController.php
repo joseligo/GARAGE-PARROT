@@ -22,6 +22,10 @@ class AdminController extends Controller
             $controller = new AnnonceController();
             $controller->route();
             break;
+          case 'edit':
+            $controller = new AnnonceController();
+            $controller->route();
+            break;
           default:
             throw new \Exception("Cette action n'existe pas : " . $_GET['action']);
         }
@@ -58,8 +62,12 @@ class AdminController extends Controller
 
       $this->render('page/adminAnnonces', [
         'listCars' => $cars,
+        'car' => "",
+        'carJSON' => json_encode(""),
         'listCarburation' => $listCarburation,
-        'listBrand' => $listBrand
+        'listBrand' => $listBrand,
+        'listPicture' =>'',
+        'values' => false
       ]);
     } catch (\Exception $e) {
       $this->render('errors/default', [

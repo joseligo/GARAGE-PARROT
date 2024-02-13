@@ -1,8 +1,17 @@
+let car = JSON.parse(document.querySelector("[data-objet-php]").getAttribute("data-objet-php"));
+console.log(car);
+
 // Permettre l'ajout d'une nouvelle marque lors de la création d'une annonce
 let inputBrand = document.getElementById("brand");
 let divNewBrand = document.getElementById("addBrand");
 let addNewBrand = document.getElementById("newBrand");
 let inputModel = document.getElementById("model");
+
+if(car.idCar) {
+  selectModel(inputBrand.value, inputModel);
+} else {
+  console.log('ok');
+}
 
 inputBrand.addEventListener("change", (e) => {
   divNewModel.classList.add("hidden");
@@ -51,6 +60,7 @@ function selectModel(value, champ) {
           let option = document.createElement("option");
           option.value = element.idModel;
           option.textContent = element.model;
+          car.model === element.model ? option.selected = true : option.selected = false ;
           champ.appendChild(option);
         });
         let option2 = document.createElement("option");
@@ -75,4 +85,25 @@ inputModel.addEventListener("change", (e) => {
     addNewModel.disabled = true;
     addNewModel.required = false;
   }
+});
+// Suppression des images secondaires lors de la modification d'une annonce
+let btnsDelete = document.querySelectorAll(".delete-picture");
+let picturesSecondary = document.querySelectorAll(".picture-form");
+console.log(picturesSecondary[0]);
+
+btnsDelete.forEach((btn, index) =>{btn.addEventListener('click', (e) => {
+  e.preventDefault();
+  let btnId= btn.id
+  let option = {
+    method: "GET",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+  };
+  fetch(`./App/Api/CarsApibis.php?action=deletePicture&picture=${btnId}`, option)
+    .then((response) => {
+      if (response.ok) {
+        return response;
+      }
+      throw new Error("Something went wrong");
+    })
+})
 });

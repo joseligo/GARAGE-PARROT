@@ -18,7 +18,7 @@ require_once _ROOTPATH_ . '/templates/header.php';
           <img src="./assets/images/uploads/<?= $car->getMainImage() ?>" class="picture1">
           <?php $indices = array_keys($car->getSecondaryImage());
           foreach ($indices as $index) { ?>
-            <img src="./assets/images/uploads/<?= $car->getSecondaryImage()[$index] ?>" class="picture2">
+            <img src="./assets/images/uploads/<?= $car->getSecondaryImage()[$index]['path'] ?>" class="picture2">
 
           <?php } ?>
       </div>
