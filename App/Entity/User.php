@@ -60,5 +60,8 @@ class User
     {
         return isset($_SESSION['user']);
     }
-    
+    public static function adminOnly(): bool
+    {
+        return $_SESSION['user']['role'] == 'admin';
+    }
 }

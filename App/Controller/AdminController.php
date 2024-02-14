@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Controller\UserController;
 use App\Repository\CarsRepository;
 use App\Repository\TimetableRepository;
 
@@ -28,6 +29,10 @@ class AdminController extends Controller
             break;
           case 'service':
             $controller = new AnnonceController();
+            $controller->route();
+            break;
+            case 'listUser':
+            $controller = new UserController();
             $controller->route();
             break;
           default:
