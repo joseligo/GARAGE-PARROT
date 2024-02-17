@@ -1,9 +1,6 @@
 <div data-objet-php='<?php echo ($carJSON); ?>'></div>
 
-<?php var_dump($listPicture) ?>
-
 <form action="?controller=annonces&action=save" method="POST" enctype="multipart/form-data">
-<!-- <form action="http://localhost:3000/templates/page/test.php" method="POST" enctype="multipart/form-data"> -->
   <div class="container-form-avis d-flex flex-column justify-content-center align-items-center">
     <div d-flex flex-row>
     <input type="hidden" value="<?php echo $values ? $car->getIdCar() : ""?>" name="idCar"> 

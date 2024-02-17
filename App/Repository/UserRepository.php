@@ -2,25 +2,30 @@
 
 namespace App\Repository;
 
-if ($_SERVER['PHP_SELF'] === '/App/Repository/UserRepository.php') {
-  require_once '../Db/Mysql.php';
-}
-
-use App\Db\Mysql;
-
 
 use App\Entity\User;
 
-class UserRepository
+class UserRepository extends Repository
 {
   public function findOneByEmail(string $email)
   {
-    $mysql = Mysql::getInstance();
-    $pdo = $mysql->getPDO();
-    $query = $pdo->prepare("SELECT * FROM Users WHERE email = :email");
-    $query->bindParam(':email', $email, $pdo::PARAM_STR);
+    $query = $this->pdo->prepare("SELECT * FROM Users WHERE email = :email");
+    $query->bindParam(':email', $email, $this->pdo::PARAM_STR);
     $query->execute();
-    $response = $query->fetch($pdo::FETCH_ASSOC);
+    $response = $query->fetch($this->pdo::FETCH_ASSOC);
+    if ($response) {
+      $user = new User($response['id'], $response['first_name'], $response['last_name'], $response['email'], $response['password'], $response['role']);
+      return $user;
+    } else {
+      return false;
+    }
+  }
+  public function findOneById(int $id)
+  {
+    $query = $this->pdo->prepare("SELECT * FROM Users WHERE id = :id");
+    $query->bindParam(':id', $id, $this->pdo::PARAM_INT);
+    $query->execute();
+    $response = $query->fetch($this->pdo::FETCH_ASSOC);
     if ($response) {
       $user = new User($response['id'], $response['first_name'], $response['last_name'], $response['email'], $response['password'], $response['role']);
       return $user;
@@ -30,12 +35,10 @@ class UserRepository
   }
   function verifyUserLoginPassword(string $email, string $password): array|bool
   {
-    $mysql = Mysql::getInstance();
-    $pdo = $mysql->getPDO();
-    $query = $pdo->prepare("SELECT * FROM Users WHERE email = :email");
-    $query->bindValue(":email", $email, $pdo::PARAM_STR);
+    $query = $this->pdo->prepare("SELECT * FROM Users WHERE email = :email");
+    $query->bindValue(":email", $email, $this->pdo::PARAM_STR);
     $query->execute();
-    $user = $query->fetch($pdo::FETCH_ASSOC);
+    $user = $query->fetch($this->pdo::FETCH_ASSOC);
 
     if ($user && password_verify($password, $user["password"])) {
       return $user;
@@ -43,33 +46,13 @@ class UserRepository
       return false;
     }
   }
-  function openAccessUser(string $firstName, string $lastName, string $email, string $password, string $role)
-  {
-    $mysql = Mysql::getInstance();
-    $pdo = $mysql->getPDO();
-    $sql = "INSERT INTO `Users` (`id`,`first_name`, `last_name`, `email`, `password`, `role`) VALUES (NULL, :firstName, :lastName, :email, :password, :role);";
-    $query = $pdo->prepare($sql);
-
-    $password = password_hash($password, PASSWORD_BCRYPT);
-
-    $query->bindParam(':firstName', $firstName, $pdo::PARAM_STR);
-    $query->bindParam(':lastName', $lastName, $pdo::PARAM_STR);
-    $query->bindParam(':email', $email, $pdo::PARAM_STR);
-    $query->bindParam(':password', $password, $pdo::PARAM_STR);
-    $query->bindParam(':role', $role, $pdo::PARAM_STR);
-
-    return $query->execute();
-  }
-
   function getAllUser()
   {
-    $mysql = Mysql::getInstance();
-    $pdo = $mysql->getPDO();
     $sql = "SELECT * FROM Users";
-    $query = $pdo->prepare($sql);
+    $query = $this->pdo->prepare($sql);
     $query->execute();
 
-    $response = $query->fetchAll($pdo::FETCH_ASSOC);
+    $response = $query->fetchAll($this->pdo::FETCH_ASSOC);
 
     $listUsers = [];
     foreach ($response as $user) {
@@ -78,27 +61,58 @@ class UserRepository
     };
     return $listUsers;
   }
-  function saveUser(string $firstName, string $lastName, string $email)
+  function saveUser(string $firstName, string $lastName, string $email, string $password, string $role)
   {
-    $mysql = Mysql::getInstance();
-    $pdo = $mysql->getPDO();
+    $sql = "INSERT INTO Users (`id`, `first_name`, `last_name`, `email`, `password`, `role`) VALUES (NULL, :firstName, :lastName, :email, :password, :role);";
+    $query = $this->pdo->prepare($sql);
 
-    $sql = "INSERT INTO Users (`id`, `first_name`, `last_name`, `email`, `password`, `role`) VALUES (NULL, :firstName, :lastName, :email, NULL, 'employé');";
-    $query = $pdo->prepare($sql);
-    $query->bindParam(':firstName', $firstName, $pdo::PARAM_STR);
-    $query->bindParam(':lastName', $lastName, $pdo::PARAM_STR);
-    $query->bindParam(':email', $email, $pdo::PARAM_STR);
-    $query->execute();
-    header('location: ../../userAdmin.php');
+    $password = password_hash($password, PASSWORD_BCRYPT);
+
+    $query->bindParam(':firstName', $firstName, $this->pdo::PARAM_STR);
+    $query->bindParam(':lastName', $lastName, $this->pdo::PARAM_STR);
+    $query->bindParam(':email', $email, $this->pdo::PARAM_STR);
+    $query->bindParam(':password', $password, $this->pdo::PARAM_STR);
+    $query->bindParam(':role', $role, $this->pdo::PARAM_STR);
+    $res = $query->execute();
+
+    if ($res) {
+      $user = new User($this->pdo->lastInsertId(), $firstName, $lastName, $email, $password, $role);
+      return $user;
+    } else {
+      throw new \Exception("Erreur lors de l'enregistrement");
+    }
   }
-  public function deleteUser(int $idUser): void
+  public function deleteUser(int $idUser): bool
   {
-    $mysql = Mysql::getInstance();
-    $pdo = $mysql->getPDO();
-
     $sql = "DELETE FROM `Users` WHERE id = :idUser";
-    $query = $pdo->prepare($sql);
-    $query->bindValue(":idUser", $idUser, $pdo::PARAM_INT);
-    $query->execute();
+    $query = $this->pdo->prepare($sql);
+    $query->bindValue(":idUser", $idUser, $this->pdo::PARAM_INT);
+    $res = $query->execute();
+    if ($res) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  function editUser(int $idUser, string $firstName, string $lastName, string $email, string $role)
+  {
+    $sql = "UPDATE Users 
+            SET `first_name` = :firstName, `last_name`= :lastName, `email` = :email, `role` = :role
+            WHERE id = :idUser;";
+    $query = $this->pdo->prepare($sql);
+
+    $query->bindParam(':idUser', $idUser, $this->pdo::PARAM_STR);
+    $query->bindParam(':firstName', $firstName, $this->pdo::PARAM_STR);
+    $query->bindParam(':lastName', $lastName, $this->pdo::PARAM_STR);
+    $query->bindParam(':email', $email, $this->pdo::PARAM_STR);
+    $query->bindParam(':role', $role, $this->pdo::PARAM_STR);
+    $res = $query->execute();
+
+    if ($res) {
+      $user = $this->findOneById($idUser);
+      return $user;
+    } else {
+      throw new \Exception("Erreur lors de l'enregistrement");
+    }
   }
 }

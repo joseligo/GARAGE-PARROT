@@ -25,7 +25,7 @@ class Controller
                         $controller = new AnnonceController();
                         $controller->route();
                         break;
-                    case 'auth' :
+                    case 'auth':
                         $controller = new AuthController();
                         $controller->route();
                         break;
@@ -33,14 +33,18 @@ class Controller
                         $controller = new AdminController();
                         $controller->route();
                         break;
-                    case 'service' :
+                    case 'service':
                         $controller = new ServiceController();
                         $controller->route();
                         break;
-                    // case 'movie':
-                    //     $controller = new MovieController();
-                    //     $controller->route();
-                    //     break;
+                    case 'user':
+                        $controller = new UserController();
+                        $controller->route();
+                        break;
+                        // case 'movie':
+                        //     $controller = new MovieController();
+                        //     $controller->route();
+                        //     break;
                     default:
                         throw new \Exception("Le controleur n'existe pas");
                 }
