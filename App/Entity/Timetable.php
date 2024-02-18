@@ -33,6 +33,8 @@ public function getTimetableFormated():string
   } else {
     if($this->ouverturePm == 'Fermé') {
     return $dayTimetable = $this->day.' : '.$this->ouvertureAm.' - '.$this->fermetureAm.' / Fermé';
+  } elseif ($this->ouverturePm == 'Continue'){
+    return $dayTimetable = $this->day.' : '.$this->ouvertureAm.' - '.$this->fermeturePm;
   } else {
     return $dayTimetable = $this->day.' : '.$this->ouvertureAm.' - '.$this->fermetureAm.' / '.$this->ouverturePm.' - '.$this->fermeturePm;
   }
