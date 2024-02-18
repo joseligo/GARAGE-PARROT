@@ -1,37 +1,102 @@
 <?php
 namespace App\Entity;
 
+use DateTime;
+
 Class Timetable
 {
   protected ?int $idDay = null;
-  protected int $hourOpen1;
-  protected int $minOpen1;
-  protected int $hourClose1;
-  protected int $minClose1;
-  protected int $hourOpen2;
-  protected int $minOpen2;
-  protected int $hourClose2;
-  protected int $minClose2;
+  protected string $ouvertureAm;
+  protected string $fermetureAm;
+  protected string $ouverturePm;
+  protected string $fermeturePm;
   protected string $day;
 
-  public function __construct(int $idDay, int $hourOpen1,int $minOpen1, int $hourClose1, int $minClose1, int $hourOpen2, int $minOpen2, int $hourClose2, int $minClose2, string $day)
+  public function __construct(int $idDay, string $ouvertureAm,string $fermetureAm, string $ouverturePm,string $fermeturePm, string $day)
   {
     $this->idDay = $idDay;
-    $this->hourOpen1 = $hourOpen1;
-    $this->minOpen1 = $minOpen1;
-    $this->hourClose1 = $hourClose1;
-    $this->minClose1 = $minClose1;
-    $this->hourOpen2 = $hourOpen2;
-    $this->minOpen2 = $minOpen2;
-    $this->hourClose2 = $hourClose2;
-    $this->minClose2 = $minClose2;
+    $this->ouvertureAm = $ouvertureAm;
+    $this->fermetureAm = $fermetureAm;
+    $this->ouverturePm = $ouverturePm;
+    $this->fermeturePm = $fermeturePm;
     $this->day = $day;
 }
 
 public function getTimetableFormated():string
 {
-  return $dayTimetable = $this->day.' : '.$this->hourOpen1.':'.$this->minOpen1.' - '.$this->hourClose1.':'.$this->minClose1.' / '.$this->hourOpen2.':'.$this->minOpen2.' - '.$this->hourClose2.':'.$this->minClose2;
+  if($this->ouvertureAm == 'Fermé') {
+    if($this->ouverturePm == 'Fermé') {
+      return $dayTimetable = $this->day.' : Fermé';
+    } else {
+      return $dayTimetable = $this->day.' : Fermé /'.$this->ouverturePm.' - '.$this->fermeturePm;
+    }
+  } else {
+    if($this->ouverturePm == 'Fermé') {
+    return $dayTimetable = $this->day.' : '.$this->ouvertureAm.' - '.$this->fermetureAm.' / Fermé';
+  } else {
+    return $dayTimetable = $this->day.' : '.$this->ouvertureAm.' - '.$this->fermetureAm.' / '.$this->ouverturePm.' - '.$this->fermeturePm;
+  }
 }
+}
+  /**
+   * Get the value of idDay
+   */
+  public function getIdDay(): ?int
+  {
+    return $this->idDay;
+  }
+
+  /**
+   * Set the value of idDay
+   */
+  public function setIdDay(?int $idDay): self
+  {
+    $this->idDay = $idDay;
+
+    return $this;
+  }
+
+  /**
+   * Set the value of ouvertureAm
+   */
+  public function setOuvertureAm(string $ouvertureAm): self
+  {
+    $this->ouvertureAm = $ouvertureAm;
+
+    return $this;
+  }
+
+  /**
+   * Set the value of fermetureAm
+   */
+  public function setFermetureAm(string $fermetureAm): self
+  {
+    $this->fermetureAm = $fermetureAm;
+
+    return $this;
+  }
+
+
+  /**
+   * Set the value of ouverturePm
+   */
+  public function setOuverturePm(string $ouverturePm): self
+  {
+    $this->ouverturePm = $ouverturePm;
+
+    return $this;
+  }
+
+
+  /**
+   * Set the value of fermeturePm
+   */
+  public function setFermeturePm(string $fermeturePm): self
+  {
+    $this->fermeturePm = $fermeturePm;
+
+    return $this;
+  }
 
   /**
    * Get the value of day
@@ -42,10 +107,44 @@ public function getTimetableFormated():string
   }
 
   /**
-   * Get the value of idDay
+   * Set the value of day
    */
-  public function getIdDay(): ?int
+  public function setDay(string $day): self
   {
-    return $this->idDay;
+    $this->day = $day;
+
+    return $this;
+  }
+
+  /**
+   * Get the value of ouvertureAm
+   */
+  public function getOuvertureAm(): string
+  {
+    return $this->ouvertureAm;
+  }
+
+  /**
+   * Get the value of fermetureAm
+   */
+  public function getFermetureAm(): string
+  {
+    return $this->fermetureAm;
+  }
+
+  /**
+   * Get the value of ouverturePm
+   */
+  public function getOuverturePm(): string
+  {
+    return $this->ouverturePm;
+  }
+
+  /**
+   * Get the value of fermeturePm
+   */
+  public function getFermeturePm(): string
+  {
+    return $this->fermeturePm;
   }
 }

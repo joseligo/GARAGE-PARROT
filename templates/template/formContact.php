@@ -1,4 +1,4 @@
-<form action="" method="POST" class="py-5">
+<form action="?controller=contact&action=save" method="POST" class="py-5">
   <div class="container-form-avis d-flex flex-row justify-content-center align-items-center pb-5">
     <div class="px-5">
       <div>
@@ -22,7 +22,7 @@
       <div>
         <label for="subject" class="form-label">Sujet</label>
         <?php if($_GET['action'] === "annonce") {?>
-          <input type = "text" readonly value ="<?= $car->getTitle() ?>">
+          <input type = "text" readonly value ="<?= $car->getTitle() ?>" name="subjectAnnonce">
         <?php } else { ?>
         <select id="subject" name="subject" class="form-control" required>
           <option value="">--Indiquez le motif de votre message</option>
@@ -34,12 +34,12 @@
       </div>
     <div class="mb-3">
       <label for="message" class="form-label">Votre message</label>
-      <textarea class="form-control" id="message" name="message" rows="3" required></textarea>
+      <textarea class="form-control" id="message" name="message" rows="6" required></textarea>
     </div>
     </div>
 </div>
   <div class="container text-center">
-    <input type="submit" name="sendContact" value="Envoyer" class="btn btn-outline-light btn-lg px-4 gap-3">
+    <input type="submit" name="sendContact" value="Envoyer" class="btn btn-secondary btn-lg px-4 gap-3">
   </div>
 </form>
 </div>

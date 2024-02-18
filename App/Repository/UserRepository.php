@@ -82,17 +82,12 @@ class UserRepository extends Repository
       throw new \Exception("Erreur lors de l'enregistrement");
     }
   }
-  public function deleteUser(int $idUser): bool
+  public function deleteUser(int $idUser)
   {
     $sql = "DELETE FROM `Users` WHERE id = :idUser";
     $query = $this->pdo->prepare($sql);
     $query->bindValue(":idUser", $idUser, $this->pdo::PARAM_INT);
-    $res = $query->execute();
-    if ($res) {
-      return true;
-    } else {
-      return false;
-    }
+    return $query->execute();
   }
   function editUser(int $idUser, string $firstName, string $lastName, string $email, string $role)
   {

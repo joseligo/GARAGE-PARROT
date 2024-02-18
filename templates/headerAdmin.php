@@ -66,11 +66,27 @@ if (!User::isLogged()) {
           </a>
         </li>
         <li>
-          <a href="contactAdmin.php" class="nav-link text-white">
+          <a href="?controller=avis&action=listAvis" class="nav-link text-white">
+            <svg class="bi pe-none me-2" width="16" height="16">
+              <use xlink:href="#people-circle"></use>
+            </svg>
+            Avis client
+          </a>
+        </li>
+        <li>
+          <a href="?controller=contact&action=listContact" class="nav-link text-white">
             <svg class="bi pe-none me-2" width="16" height="16">
               <use xlink:href="#people-circle"></use>
             </svg>
             Demande de contact
+          </a>
+        </li>
+        <li>
+          <a href="?controller=admin&action=timeTable" class="nav-link text-white">
+            <svg class="bi pe-none me-2" width="16" height="16">
+              <use xlink:href="#people-circle"></use>
+            </svg>
+            Horaires d'ouverture
           </a>
         </li>
         <li>

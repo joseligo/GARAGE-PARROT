@@ -31,7 +31,7 @@ use App\Entity\User;
       <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
         <li><a href="index.php" class="nav-link px-2 active">ACCUEIL</a></li>
         <li><a href="?controller=annonces&action=list" class="nav-link px-2">A VENDRE</a></li>
-        <li><a href="contact.php" class="nav-link px-2">CONTACT</a></li>
+        <li><a href="?controller=contact&action=home" class="nav-link px-2">CONTACT</a></li>
         <li><a href="<?php if (User::isLogged()) {
                         echo ('?controller=admin&action=home');
                       } else {

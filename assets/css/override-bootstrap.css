@@ -221,8 +221,8 @@ span.text_holder:hover {
   color: var(--primary);
 }
 
-/* Style page annonce */
-.container-annonce {
+/* Style page annonce et contact */
+.container-annonce, .contact-container {
   background: linear-gradient(var(--secondary), whitesmoke);
   color: var(--primary);
 }

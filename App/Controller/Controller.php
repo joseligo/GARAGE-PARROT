@@ -41,10 +41,14 @@ class Controller
                         $controller = new UserController();
                         $controller->route();
                         break;
-                        // case 'movie':
-                        //     $controller = new MovieController();
-                        //     $controller->route();
-                        //     break;
+                    case 'avis':
+                        $controller = new AvisController();
+                        $controller->route();
+                        break;
+                    case 'contact':
+                        $controller = new ContactController();
+                        $controller->route();
+                        break;
                     default:
                         throw new \Exception("Le controleur n'existe pas");
                 }

@@ -31,9 +31,15 @@ class AdminController extends Controller
             $controller = new AnnonceController();
             $controller->route();
             break;
-            case 'listUser':
+          case 'listUser':
             $controller = new UserController();
             $controller->route();
+            break;
+          case 'timeTable':
+            $this->setTimeTable();
+            break;
+          case 'saveTimeTable':
+            $this->saveTimeTable();
             break;
           default:
             throw new \Exception("Cette action n'existe pas : " . $_GET['action']);
@@ -78,6 +84,53 @@ class AdminController extends Controller
         'listPicture' => '',
         'values' => false
       ]);
+    } catch (\Exception $e) {
+      $this->render('errors/default', [
+        'error' => $e->getMessage()
+      ]);
+    }
+  }
+  protected function setTimeTable()
+  {
+    try {
+      $timeTableRepository = new TimetableRepository();
+      $listTimeTable = $timeTableRepository->getTimeTable();
+
+      $this->render('page/adminTimeTable', [
+        'listTimeTable' => $listTimeTable,
+      ]);
+    } catch (\Exception $e) {
+      $this->render('errors/default', [
+        'error' => $e->getMessage()
+      ]);
+    }
+  }
+  protected function saveTimeTable()
+  {
+    try {
+      $timeTableRepository = new TimetableRepository();
+      if(isset($_POST['closeAm'])) {
+        $ouvertureAm = "Fermé";
+        $fermetureAm = "Fermé";
+      } else {
+        $ouvertureAm = $_POST['ouvertureAm'];
+        $fermetureAm = $_POST['fermetureAm'];
+      }
+      if(isset($_POST['closePm'])) {
+        $ouverturePm = "Fermé";
+        $fermeturePm = "Fermé";
+      } else {
+        $ouverturePm = $_POST['ouverturePm'];
+        $fermeturePm = $_POST['fermeturePm'];
+      }
+      if(isset($_POST['continue'])) {
+        $fermetureAm = "Continue";
+        $ouverturePm = "Continue";
+      }
+
+      $timeTableRepository->saveTimeTable(intval($_POST["idDay"]), $ouvertureAm, $fermetureAm, $ouverturePm, $fermeturePm);
+
+      $this->setTimeTable();
     } catch (\Exception $e) {
       $this->render('errors/default', [
         'error' => $e->getMessage()
