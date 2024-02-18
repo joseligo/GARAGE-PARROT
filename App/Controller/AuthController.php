@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Db\Mysql;
 use App\Repository\UserRepository;
+use App\Repository\TimetableRepository;
 
 class AuthController extends Controller
 {
@@ -36,6 +37,9 @@ class AuthController extends Controller
     {
         $errors = [];
 
+        $timeTableRepository = new TimetableRepository();
+        $listTimeTable = $timeTableRepository->getTimeTable();
+
         if (isset($_POST['loginUser'])) {
 
             $userRepository = new UserRepository();
@@ -60,6 +64,7 @@ class AuthController extends Controller
 
         $this->render('page/login', [
             'errors' => $errors,
+            'listTimeTable' => $listTimeTable,
         ]);
     }
 

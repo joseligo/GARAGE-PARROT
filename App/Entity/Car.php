@@ -51,7 +51,9 @@ class Car implements \JsonSerializable
    */
   public function getAnnouncementDate(): string
   {
-    return $this->announcementDate;
+    $date= new \DateTime($this->announcementDate);
+    $dateFormated = $date->format('d/m/y');
+    return $dateFormated;
   }
 
   /**

@@ -1,9 +1,9 @@
 <?php
 require_once _ROOTPATH_ . '/templates/header.php';
 ?>
-<div class="container mb-1">
+<div class="container mb-1 text-secondary">
 
-  <h1 class="my-1">Accès employés</h1>
+  <h1 class="my-1 ">Accès employés</h1>
 
   <?php foreach ($errors as $error) { ?>
     <div class="alert alert-danger"><?= $error ?></div>

@@ -6,7 +6,7 @@
     <input type="hidden" value="<?php echo $values ? $car->getIdCar() : ""?>" name="idCar"> 
       <div>
         <label for="brand" class="form-label">Marque</label>
-        <select id="brand" name="brand" class="form-control" required>
+        <select id="brand" name="brand" class="form-select" required>
           <option value="">--Marque du véhicule</option>
           <?php foreach ($listBrand as $brand) { ?>
             <option value="<?= $brand['idBrand'] ?>" <?php echo ($values && $car->getBrand() === $brand['nameBrand']) ? 'selected' : '' ?>><?= $brand['nameBrand'] ?></option>
@@ -21,7 +21,7 @@
     </div>
     <div>
       <label for="model" class="form-label">Modèle</label>
-      <select id="model" name="model" class="form-control" required>
+      <select id="model" name="model" class="form-select" required>
         <option value="">--Modèle du véhicule</option>
       </select>
     </div>
@@ -31,7 +31,7 @@
     </div>
     <div>
       <label for="carburetion" class="form-label">Carburation</label>
-      <select id="carburetion" name="carburetion" class="form-control" required>
+      <select id="carburetion" name="carburetion" class="form-select" required>
         <option value="">--Carburation</option>
         <?php foreach ($listCarburation as $carburation) { ?>
           <option value="<?= $carburation[0] ?>" <?php echo ($values && $car->getCarburetion() === $carburation[1]) ? 'selected' : '' ?>><?= $carburation[1] ?></option>
@@ -75,6 +75,6 @@
         <input type="file" id="secondaryPicture" name="secondaryPicture[]" multiple accept="image/png, image/jpeg" />
       </div>
     </div>
-    <input type="submit" name="saveCar" value="Envoyer">
+    <input type="submit" name="saveCar" value="Envoyer" class="btn btn-secondary mt-3">
   </div>
 </form>

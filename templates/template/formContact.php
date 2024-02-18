@@ -1,5 +1,5 @@
 <form action="?controller=contact&action=save" method="POST" class="py-5">
-  <div class="container-form-avis d-flex flex-row justify-content-center align-items-center pb-5">
+  <div class="container-form-avis d-flex flex-column flex-md-row justify-content-center align-items-center pb-5">
     <div class="px-5">
       <div>
         <label for="lastName" class="form-label">Votre nom</label>

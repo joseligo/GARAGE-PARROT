@@ -19,7 +19,6 @@ if (!User::adminOnly()) {
     <?php } ?>
   </div>
 <?php } ?>
-<div class="container my-5">
 
   <h2 class="mt-2">Créer un accès</h2>
 
@@ -92,8 +91,6 @@ if (!User::adminOnly()) {
     </table>
   </div>
 
-</div>
-</div>
 
 <?php
 require_once _ROOTPATH_ . '/templates/footerAdmin.php';

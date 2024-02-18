@@ -88,7 +88,7 @@ body {
 }
 
 .encart {
-  width: 80%;
+  width: 100%;
   border: solid var(--third);
   padding: auto;
 }
@@ -115,6 +115,9 @@ h2 {
   .container-vignette,
   .container-avis {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .encart{
+    width: 80%;
   }
 }
 
@@ -227,37 +230,6 @@ span.text_holder:hover {
   color: var(--primary);
 }
 
-/* Style formulaire avis */
-/* .rating {
-  width: 226px;
-  margin: 0 auto 1em;
-  font-size: 45px;
-  overflow:hidden;
-}
-.rating input {
-  position: absolute;
-  opacity: 0;
-}
-.rating label {
-  cursor: pointer;
-  border-bottom: 2px solid currentColor;
-}
-.rating a {
-  float: right;
-  color: #aaa;
-  text-decoration: none;
-  -webkit-transition: color .4s;
-  -moz-transition: color .4s;
-  -o-transition: color .4s;
-  transition: color .4s;
-}
-.rating a:hover,
-		.rating a:hover ~ a,
-		.rating a:focus,
-		.rating a:focus ~ a		{
-			color: var(--third);
-			cursor: pointer;
-		} */
 footer {
   color: whitesmoke;
 }

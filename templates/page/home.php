@@ -22,7 +22,7 @@ spl_autoload_register();
 <!-- Section présentation des services -->
 <div class="px-4 py-5 text-center div-primary">
   <div class="container d-flex align-items-center justify-content-center flex-column">
-    <div class="encart text-center mb-4 py-5 px-5">
+    <div class="encart text-center mb-4 py-1 px-1 py-md-5 px-md-5">
       <h2>NOUS SOMMES SPÉCIALISTES DE LA RESTAURATION, DE L’ENTRETIEN ET DE LA VENTE DE VOITURES DE COLLECTION.</h2>
       <p class="fw-bold">---</p>
       <p>Notre équipe est composée de spécialistes passionnés par les véhicules de collection. Nous nous occupons de la restauration complète mais également de l’entretien des voitures.</p>
@@ -61,7 +61,7 @@ require_once './templates/template/avis.php';
 <div class="container text-center">
   <p class="question">
     Des questions ? N’hésitez pas à nous contacter
-    <a href="contact.php">
+    <a href="?controller=contact&action=home">
       <i class="bi bi-envelope-fill"></i>
     </a>
   </p>

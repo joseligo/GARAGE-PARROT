@@ -1,34 +1,68 @@
 body {
-  color:black;
+  color: black;
+  /* min-height: 100%; */
+}
+main {
+  width: 100%;
+  min-height: 96vh;
+}
+
+a span {
+  display: none;
+}
+.form-select {
+  width: 100%;
+}
+.navbar {
+  width: 60px;
   min-height: 100vh;
 }
 
-.btn-add-user, .btn-add {
+
+@media screen and (min-width: 768px) {
+
+  .navbar {
+    width: 250px;
+  }
+  a span {
+    display: inline;
+  }
+
+}
+
+.btn-add-user,
+.btn-add {
   color: whitesmoke;
   font-weight: 700;
   border-radius: 50%;
   border: 1px solid grey;
   background-color: green;
 }
+
 .hidden {
   display: none;
 }
 
 .display-none {
-  display:none;
+  display: none;
 }
+
 .container-crud-annonce {
   display: flex;
 }
+
 .container-crud-annonce :first-child {
   flex: 2 1 0;
 }
+
 .container-crud-annonce :last-child {
   flex: 1 1 0;
 }
-.picture-form{
+
+.picture-form {
   width: 150px;
 }
+
 .btn {
   width: 100px;
   height: 50px;

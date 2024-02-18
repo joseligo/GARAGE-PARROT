@@ -21,8 +21,6 @@ spl_autoload_register();
           <th scope="col">Modèle</th>
           <th scope="col">Commentaire</th>
           <th scope="col">Date</th>
-          <th scope="col">Image principale</th>
-          <th scope="col">Autres images</th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -32,7 +30,6 @@ spl_autoload_register();
     </table>
   </div>
 
-</div>
 </div>
 
 <?php

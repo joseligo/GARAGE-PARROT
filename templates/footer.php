@@ -1,6 +1,6 @@
 </main>
 <footer class="div-primary ">
-  <div class="container container-footer d-flex align-items-center justify-content-around">
+  <div class="container container-footer d-flex flex-column flex-md-row align-items-center justify-content-around">
     <div class="horaire">
       <h5>Horaires d'ouverture</h5>
       <?php require_once './templates/template/timetable.php';?>

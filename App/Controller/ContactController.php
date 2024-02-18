@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\AvisRepository;
 use App\Repository\ContactRepository;
+use App\Repository\TimetableRepository;
 
 class ContactController extends Controller
 {
@@ -40,10 +41,14 @@ class ContactController extends Controller
   {
 
     try {
+      $timeTableRepository = new TimetableRepository();
+      $listTimeTable = $timeTableRepository->getTimeTable();
+
       $contactRepostory = new ContactRepository();
       $listSubject = $contactRepostory->getSubject();
 
       $this->render('page/contact', [
+        'listTimeTable' => $listTimeTable,
         'listSubject' => $listSubject,
         'message' => $message,
         'errors' => $errors
@@ -54,7 +59,7 @@ class ContactController extends Controller
       ]);
     }
   }
-  protected function saveContact():void
+  protected function saveContact(): void
   {
     try {
       $message = "";
@@ -88,7 +93,7 @@ class ContactController extends Controller
 
       $contactRepository = new ContactRepository();
       $res = $contactRepository->getFormContact();
-      
+
       $this->render('page/adminContact', [
         'listContact' => $res,
         'message' => $message,
@@ -100,12 +105,13 @@ class ContactController extends Controller
       ]);
     }
   }
-  protected function valider() {
+  protected function valider()
+  {
     try {
       $contactRepository = new ContactRepository();
       $res = $contactRepository->deleteFormContact($_POST['contactId']);
       $this->listContact();
-    }catch (\Exception $e) {
+    } catch (\Exception $e) {
       $this->render('errors/default', [
         'error' => $e->getMessage()
       ]);

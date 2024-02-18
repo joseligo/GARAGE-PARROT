@@ -3,6 +3,7 @@ spl_autoload_register();
 require_once './App/Db/Mysql.php';
 
 use App\Entity\User;
+use App\Tools\NavigationTools;
 // require_once './App/Tools/session.php';
 
 ?>
@@ -29,9 +30,9 @@ use App\Entity\User;
       </div>
 
       <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="index.php" class="nav-link px-2 active">ACCUEIL</a></li>
-        <li><a href="?controller=annonces&action=list" class="nav-link px-2">A VENDRE</a></li>
-        <li><a href="?controller=contact&action=home" class="nav-link px-2">CONTACT</a></li>
+        <li><a href="index.php" class="nav-link px-2 <?= NavigationTools::addActiveClass('page', 'home') ?>">ACCUEIL</a></li>
+        <li><a href="?controller=annonces&action=list" class="nav-link px-2 <?= NavigationTools::addActiveClass('annonces', 'list') ?>">A VENDRE</a></li>
+        <li><a href="?controller=contact&action=home" class="nav-link px-2 <?= NavigationTools::addActiveClass('contact', 'home') ?>">CONTACT</a></li>
         <li><a href="<?php if (User::isLogged()) {
                         echo ('?controller=admin&action=home');
                       } else {
