@@ -70,7 +70,7 @@ class ServiceController extends Controller
       if (isset($_FILES['picture']) && $_FILES['picture']['error'] == 0) {
         $picture = $serviceRepository->saveImage($_FILES['picture']);
       } else {
-        $picture = $_POST['picture'];
+        $picture = $_POST['PictureUse'];
       }
       $serviceRepository->editService($_POST['id'], $_POST['title'], $_POST['content'], $picture, $_SESSION['user']['id']);
       $this->showService();

@@ -25,7 +25,7 @@ class ServicesRepository extends Repository
 
     $listServices = [];
     foreach ($response as $service) {
-      $service = new Service($service['id_service'], $service['title'], $service['comment'], $service['picture'], $service['author']);
+      $service = new Service($service['id_service'], $service['title'], $service['comment'], $service['picture']);
       $listServices[] = $service;
     };
     return $listServices;
@@ -39,7 +39,7 @@ class ServicesRepository extends Repository
     $query->execute();
 
     $response = $query->fetch($this->pdo::FETCH_ASSOC);
-    $service = new Service($response['id_service'], $response['title'], $response['comment'], $response['picture'], $response['author']);
+    $service = new Service($response['id_service'], $response['title'], $response['comment'], $response['picture']);
     
     return $service;
   }
@@ -67,7 +67,7 @@ class ServicesRepository extends Repository
       $checkImage = getimagesize($file['tmp_name']);
       if ($checkImage !== false) {
         $fileName = uniqid() . '-' . StringTools::formatNameImage($file);
-        move_uploaded_file($file['tmp_name'], './assets/images/' . $fileName);
+        move_uploaded_file($file['tmp_name'], './assets/images/uploads/' . $fileName);
         return $fileName;
       }
     }

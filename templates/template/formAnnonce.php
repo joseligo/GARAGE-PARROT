@@ -3,7 +3,7 @@
 <form action="?controller=annonces&action=save" method="POST" enctype="multipart/form-data">
   <div class="container-form-avis d-flex flex-column justify-content-center align-items-center">
     <div d-flex flex-row>
-    <input type="hidden" value="<?php echo $values ? $car->getIdCar() : ""?>" name="idCar"> 
+      <input type="hidden" value="<?php echo $values ? $car->getIdCar() : "" ?>" name="idCar">
       <div>
         <label for="brand" class="form-label">Marque</label>
         <select id="brand" name="brand" class="form-select" required>
@@ -57,23 +57,29 @@
     <div>
       <?php if ($values) { ?>
         <img src="./assets/images/uploads/<?= $car->getMainImage() ?>" class="picture-form">
-        <input type="hidden" value="<?= $car->getMainImage() ?>" name="mainImageUse"> 
+        <input type="hidden" value="<?= $car->getMainImage() ?>" name="mainImageUse">
       <?php } ?>
-      <div>
+      <div class="my-3">
         <label for="mainImage">Photo principale</label>
         <input type="file" id="mainImage" name="mainImage" accept="image/png, image/jpeg" />
       </div>
     </div>
     <div>
-      <div>
-      <?php if($values){$indices = array_keys($car->getSecondaryImage());
+      <div class="d-flex mb-2">
+        <?php if ($values) {
+          $indices = array_keys($car->getSecondaryImage());
+
           foreach ($indices as $index) { ?>
-            <img src="./assets/images/uploads/<?= $car->getSecondaryImage()[$index]['path'] ?>" class="picture-form">
-            <button class="delete-picture btn btn-primary" id="<?= $car->getSecondaryImage()[$index]['id'] ?>">supprimer</button>
-          <?php }} ?>
+            <div class="d-flex flex-column mx-1">
+              <img src="./assets/images/uploads/<?= $car->getSecondaryImage()[$index]['path'] ?>" class="picture-form">
+              <button class="delete-picture btn btn-primary mt-2" id="<?= $car->getSecondaryImage()[$index]['id'] ?>">supprimer</button>
+            </div>
+        <?php }
+        } ?>
+        </div>
         <label for="secondaryPicture">Photos complementaires</label>
         <input type="file" id="secondaryPicture" name="secondaryPicture[]" multiple accept="image/png, image/jpeg" />
-      </div>
+      
     </div>
     <input type="submit" name="saveCar" value="Envoyer" class="btn btn-secondary mt-3">
   </div>

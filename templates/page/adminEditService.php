@@ -24,7 +24,7 @@ if (!User::adminOnly()) {
       <textarea class="form-control" id="content" name="content" rows="10" cols="50"><?= $service->getComment() ?></textarea>
     </div>
     <div>
-        <img src="./assets/images/<?= $service->getPicture() ?>" class="picture-form my-2">
+        <img src="./assets/images/uploads/<?= $service->getPicture() ?>" class="picture-form my-2">
         <input type="hidden" value="<?= $service->getPicture() ?>" name="PictureUse"> 
       <div>
         <label for="picture">Photo principale</label>

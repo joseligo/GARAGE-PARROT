@@ -10,13 +10,12 @@ class Service
   protected string $picture;
   protected string $author;
 
-  public function __construct(int $id, string $title, string $comment, string $picture, string $author)
+  public function __construct(int $id, string $title, string $comment, string $picture)
   {
     $this->id = $id;
     $this->title = $title;
     $this->comment = $comment;
     $this->picture = $picture;
-    $this->author = $author;
   }
   /**
    * Get the value of id

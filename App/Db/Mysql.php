@@ -14,15 +14,8 @@ class Mysql {
 
     private function __construct() 
     {
-      $conf = ['db_name' => 'joseligo_ecf_garage_parrot',
-      'db_user' => 'joseligo',
-      'db_password' => 'Cameli@7685',
-      'db_port' => '3306',
-      'db_host' => 'mysql-joseligo.alwaysdata.net'
-    ];
-      // if($_SERVER['PHP_SELF'] === '/App/Repository/CarsRepository.php') {
-      //   $conf = require_once '../../config.php';
-      // } else {$conf = require_once 'config.php';}
+      $conf = require_once _ROOTPATH_.'/configDb.php';
+
       if(isset($conf['db_name'])) {
         $this->db_name = $conf['db_name'];
       }
