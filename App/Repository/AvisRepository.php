@@ -12,6 +12,8 @@ class AvisRepository extends Repository
 {
   public function saveAvis($firstName, $lastName, $comment, $note)
   {
+    $firstName =htmlspecialchars($firstName);
+    $lastName =htmlspecialchars($lastName);
     $comment =htmlspecialchars($comment);
     $sql = "INSERT INTO `Avis` (`id`, `first_name`, `last_name`, `comment`, `note`, `validation`,`date_addition`, `id_user`) VALUES (NULL, :firstName, :lastName, :comment, :note, 0, NOW(), NULL);";
     $query = $this->pdo->prepare($sql);
