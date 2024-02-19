@@ -173,7 +173,7 @@ Class Avis
     $dateFormated = $date->format('d-m-y');
     return $dateFormated;
   }
-  public function __construct(int $id, string $first_name,string $last_name, string $comment, int $note, bool|null $validation, int|null $id_user, string $date_addition)
+  public function __construct(int $id, string $first_name,string $last_name, string $comment, int $note, bool|null $validation, string $date_addition)
   {
     $this->id = $id;
     $this->firstName = $first_name;
@@ -181,7 +181,6 @@ Class Avis
     $this->comment = $comment;
     $this->note = $note;
     $this->validation = $validation;
-    $this->idUser = $id_user;
     $this->dateAddition = $date_addition;
 
   }

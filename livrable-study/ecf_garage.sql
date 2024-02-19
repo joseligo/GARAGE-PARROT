@@ -100,12 +100,12 @@ id_user INT
 
 insert INTO Services
 VALUES
-(NULL, 'mécanique', 'Nous assurons l’entretien général et la réfection des moteurs, boîte de vitesse, etc. Nous vous suivons et conseillons dans le choix de vos travaux, que ce soit une restauration ou un simple entretien.', './App/assets/images/service_default.png', 1);
+(NULL, 'mécanique', 'Nous assurons l’entretien général et la réfection des moteurs, boîte de vitesse, etc. Nous vous suivons et conseillons dans le choix de vos travaux, que ce soit une restauration ou un simple entretien.', 'service_default.png', 1);
 insert INTO Services
 VALUES
-(NULL, 'carroserie & peinture', 'Nous assurons la restauration totale de la carrosserie, la peinture et le remplacement des éléments soudés tels que le plancher, bas de caisse, aile, le formage de tôle à l’identique et dans les règles de l’art, le sablage, les traitements anticorrosion et la mise en peinture complète de votre ancienne avec soins.', './App/assets/images/service_default.png', 1),
-(NULL, 'sellerie & boiserie', 'La refabrication des sièges sera effectué par notre collaborateur qui nous fournit un travail de qualité. En ce qui concerne les poses de capote, du tonneau cover ou la remise en état, notre équipe s’en chargera comme à l’identique.', './App/assets/images/service_default.png', 1),
-(NULL, 'électricité', 'Nous assurons le contrôle, la réparation ou le remplacement des faisceaux électriques. Notre spécialiste dispose d’une solide expérience dans le domaine depuis 30 ans dans l’automobile.', './App/assets/images/service_default.png', 1);
+(NULL, 'carroserie & peinture', 'Nous assurons la restauration totale de la carrosserie, la peinture et le remplacement des éléments soudés tels que le plancher, bas de caisse, aile, le formage de tôle à l’identique et dans les règles de l’art, le sablage, les traitements anticorrosion et la mise en peinture complète de votre ancienne avec soins.', 'service_default.png', 1),
+(NULL, 'sellerie & boiserie', 'La refabrication des sièges sera effectué par notre collaborateur qui nous fournit un travail de qualité. En ce qui concerne les poses de capote, du tonneau cover ou la remise en état, notre équipe s’en chargera comme à l’identique.', 'service_default.png', 1),
+(NULL, 'électricité', 'Nous assurons le contrôle, la réparation ou le remplacement des faisceaux électriques. Notre spécialiste dispose d’une solide expérience dans le domaine depuis 30 ans dans l’automobile.', 'service_default.png', 1);
 
 
 CREATE TABLE Subject

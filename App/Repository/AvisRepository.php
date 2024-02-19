@@ -41,7 +41,7 @@ class AvisRepository extends Repository
 
     $listAvis = [];
     foreach ($response as $avis) {
-      $avis = new Avis($avis['id'], $avis['first_name'], $avis['last_name'], $avis['comment'], $avis['note'], true, $avis['id_user'], $avis['date_addition']);
+      $avis = new Avis($avis['id'], $avis['first_name'], $avis['last_name'], $avis['comment'], $avis['note'], true, $avis['date_addition']);
       $listAvis[] = $avis;
     };
     return $listAvis;
@@ -61,7 +61,7 @@ class AvisRepository extends Repository
     $validationBool = false;
     $validation === 0 ? $validationBool = false : true;
     foreach ($response as $avis) {
-      $avis = new Avis($avis['id'], $avis['first_name'], $avis['last_name'], $avis['comment'], $avis['note'], $validationBool, $avis['id_user'], $avis['date_addition']);
+      $avis = new Avis($avis['id'], $avis['first_name'], $avis['last_name'], $avis['comment'], $avis['note'], $validationBool, $avis['date_addition']);
       $listAvis[] = $avis;
     };
     return $listAvis;
