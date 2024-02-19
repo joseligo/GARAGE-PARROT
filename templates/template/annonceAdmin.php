@@ -1,8 +1,6 @@
 <?php foreach ($listCars as $car) { ?>
   <tr>
     <td><?= $car->getTitle() ?></td>
-    <td><?= $car->getBrand() ?></td>
-    <td><?= $car->getModel() ?></td>
     <td><?= $car->getComment() ?></td>
     <td><?= $car->getAnnouncementDate() ?></td>
     <td></td>

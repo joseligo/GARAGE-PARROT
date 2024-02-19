@@ -45,6 +45,8 @@ class ServicesRepository extends Repository
   }
   public function editService(int $id, string $title, string $comment, $picture, $idUser)
   {
+    $comment =htmlspecialchars($comment);
+
     $sql = "UPDATE `Services` 
               SET `title` = :title, `comment` = :comment, 
               `picture` = :picture, `id_user` = :idUser

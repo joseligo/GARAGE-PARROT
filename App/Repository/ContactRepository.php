@@ -24,6 +24,7 @@ class ContactRepository extends Repository
   }
   public function saveContact(string $lastName, string $firstName, string $numTel, string $mail, string $comment, int $subject)
   {
+    $comment =htmlspecialchars($comment);
     $sql = "INSERT INTO `FormContact` (`id_contact`, `last_name`, `first_name`, `phone_number`, `email`, `comment`,`date_addition`,`id_subject`) VALUES (NULL, :lastName, :firstName, :numTel, :mail, :comment, NOW(), :idSubject);";
     $query = $this->pdo->prepare($sql);
     $query->bindParam(':lastName', $lastName, $this->pdo::PARAM_STR);

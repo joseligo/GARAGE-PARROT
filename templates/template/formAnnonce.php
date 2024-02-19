@@ -26,7 +26,7 @@
       </select>
     </div>
     <div class="hidden" id="addModel">
-      <label for="newModel" class="form-label">Nouvelle marque</label>
+      <label for="newModel" class="form-label">Nouveau modèle</label>
       <input type="texte" id="newModel" name="newModel" class="form-control" disabled>
     </div>
     <div>

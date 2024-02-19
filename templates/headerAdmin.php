@@ -24,7 +24,7 @@ if (!User::isLogged()) {
 </head>
 
 <body class="min-height-0">
-  
+
   <div class="container d-flex text-third">
     <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark navbar">
       <a href="" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-primary text-decoration-none">
@@ -38,18 +38,29 @@ if (!User::isLogged()) {
             <span>Annonces</span>
           </a>
         </li>
-        <li>
-          <a href="?controller=service&action=show" class="nav-link text-white">
-            <i class="bi bi-tools pe-2"></i>
-            <span>Services</span>
-          </a>
-        </li>
-        <li>
-          <a href="?controller=admin&action=listUser" class="nav-link text-white">
-            <i class="bi bi-person-fill pe-2"></i>
-            <span>Employés</span>
-          </a>
-        </li>
+
+        <?php if (User::adminOnly()) { ?>
+          <li>
+            <a href="?controller=service&action=show" class="nav-link text-white">
+              <i class="bi bi-tools pe-2"></i>
+              <span>Services</span>
+            </a>
+          </li>
+          <li>
+            <a href="?controller=admin&action=timeTable" class="nav-link text-white">
+              <i class="bi bi-calendar-date pe-2"></i>
+              <span>Horaires d'ouverture</span>
+            </a>
+          </li>
+          <li>
+            <a href="?controller=admin&action=listUser" class="nav-link text-white">
+              <i class="bi bi-person-fill pe-2"></i>
+              <span>Employés</span>
+            </a>
+          </li>
+        <?php } ?>
+
+
         <li>
           <a href="?controller=avis&action=listAvis" class="nav-link text-white">
             <i class="bi bi-star-fill pe-2"></i>
@@ -62,12 +73,7 @@ if (!User::isLogged()) {
             <span>Demande de contact</span>
           </a>
         </li>
-        <li>
-          <a href="?controller=admin&action=timeTable" class="nav-link text-white">
-            <i class="bi bi-calendar-date pe-2"></i>
-            <span>Horaires d'ouverture</span>
-          </a>
-        </li>
+
         <li>
           <a href="index.php" class="nav-link text-white">
             <i class="bi bi-eye-fill pe-2"></i>
@@ -82,5 +88,5 @@ if (!User::isLogged()) {
         </li>
       </ul>
     </div>
-<div class="d-flex flex-column flex-grow-1 container">
-    <main class="d-flex flex-column px-4 ">
+    <div class="d-flex flex-column flex-grow-1 container">
+      <main class="d-flex flex-column px-4 ">

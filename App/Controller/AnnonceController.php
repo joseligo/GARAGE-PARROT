@@ -101,11 +101,21 @@ class AnnonceController extends Controller
             } else {
                 $mainImage = $postData['mainImageUse'];
             }
+            if(isset($postData['newBrand'])) {
+                $brand = $carRepository->addBrand($postData['newBrand']);
+            } else {
+                $brand = $postData['brand'];
+            }
+            if(isset($postData['newModel'])) {
+                $model = $carRepository->addModel($postData['newModel'], $brand);
+            } else {
+                $model = $postData['model'];
+            }
             if ($postData['idCar']) {
                 $idCar = $postData['idCar'];
-                $carRepository->modifyCar($idCar, $postData['brand'], $postData['model'], $postData['carburetion'], $postData['km'], $mainImage, $postData['year'], $postData['price'], $postData['comment']);
+                $carRepository->modifyCar($idCar, $brand, $model, $postData['carburetion'], $postData['km'], $mainImage, $postData['year'], $postData['price'], $postData['comment']);
             } else {
-                $idCar = $carRepository->saveCar($postData['brand'], $postData['model'], $postData['carburetion'], $postData['km'], $mainImage, $postData['year'], $postData['price'], $postData['comment']);
+                $idCar = $carRepository->saveCar($brand, $model, $postData['carburetion'], $postData['km'], $mainImage, $postData['year'], $postData['price'], $postData['comment']);
             }
             if (isset($filesData['secondaryPicture'])) {
                 for ($i = 0; $i < count($filesData['secondaryPicture']['name']); $i++) {

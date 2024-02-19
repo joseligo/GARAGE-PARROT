@@ -11,29 +11,29 @@
     <!-- test étoiles -->
     <input type="hidden" name="id" value="sessionID">
     <p class="wrapper-rating">
-      <input name="note" id="note_0" value="-1" type="radio" checked>
+      <input name="note" id="note_0" value="" type="radio">
       <span class="star">
-        <input name="note" id="note_1" value="1" type="radio">
+        <input name="note" id="note_1" value="1" type="radio" required>
         <label for="note_1" title="Très mauvaise"><svg>
             <use href="#star"></use>
           </svg></label>
         <span class="star">
-          <input name="note" id="note_2" value="2" type="radio">
+          <input name="note" id="note_2" value="2" type="radio" required>
           <label for="note_2" title="Médiocre"><svg>
               <use href="#star"></use>
             </svg></label>
           <span class="star">
-            <input name="note" id="note_3" value="3" type="radio">
+            <input name="note" id="note_3" value="3" type="radio" required>
             <label for="note_3" title="Moyenne"><svg>
                 <use href="#star"></use>
               </svg></label>
             <span class="star">
-              <input name="note" id="note_4" value="4" type="radio">
+              <input name="note" id="note_4" value="4" type="radio" required>
               <label for="note_4" title="Bonne"><svg>
                   <use href="#star"></use>
                 </svg></label>
               <span class="star">
-                <input name="note" id="note_5" value="5" type="radio">
+                <input name="note" id="note_5" value="5" type="radio" required>
                 <label for="note_5" title="Excellente"><svg>
                     <use href="#star"></use>
                   </svg></label>

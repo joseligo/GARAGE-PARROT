@@ -2,6 +2,11 @@
 require_once _ROOTPATH_ . '/templates/headerAdmin.php';
 require_once 'config.php';
 spl_autoload_register();
+use App\Entity\User;
+
+if (!User::adminOnly()) {
+  header('location:?controller=admin&action=home');
+}
 ?>
 
 <h2 class="my-5">Services en ligne</h2>

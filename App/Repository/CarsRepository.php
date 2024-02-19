@@ -91,6 +91,7 @@ class CarsRepository extends Repository
   }
   public function saveCar(int $brand, int $model, int $carburetion, int $km, string $mainImage, int $year, int $price, string $comment)
   {
+    $comment=htmlspecialchars($comment);
     $sql = "INSERT INTO `Cars` (`id_car`, `id_brand`, `id_model`, `id_carburetion`, `km`, `main_image`,`year`, `price`, `date`, `comment`) VALUES (NULL, :idBrand, :idModel, :carburetion, :km, :mainImage, :year, :price, NOW(), :comment);";
     $query = $this->pdo->prepare($sql);
     $query->bindParam(':idBrand', $brand, $this->pdo::PARAM_INT);
@@ -107,6 +108,7 @@ class CarsRepository extends Repository
   }
   public function modifyCar(int $idCar, int $brand, int $model, int $carburetion, int $km, string $mainImage, int $year, int $price, string $comment)
   {
+    $comment=htmlspecialchars($comment);
     $sql = "UPDATE `Cars` 
               SET `id_brand` = :idBrand, `id_model` = :idModel, `id_carburetion` = :idCarburetion, 
               `km` = :km, `main_image` = :mainImage,`year` = :year, 
@@ -200,5 +202,26 @@ class CarsRepository extends Repository
       $listBrand[] = ['idBrand'=>$brand["id_brand"], 'nameBrand'=>$brand["brand"]];
     };
     return $listBrand;
+  }
+  public function addBrand($brand)
+  {
+
+    $sql = "INSERT INTO `Brands` (`brand`) VALUES (:brand);";
+    $query = $this->pdo->prepare($sql);
+    $query->bindParam(':brand', $brand, $this->pdo::PARAM_STR);
+    $query->execute();
+    $lastId = $this->pdo->lastInsertId();
+    return $lastId;
+
+  }
+  public function addModel($model, $idBrand)
+  {
+    $sql = "INSERT INTO `Models` (`model`, `id_brand`) VALUES (:model, :idBrand);";
+    $query = $this->pdo->prepare($sql);
+    $query->bindParam(':model', $model, $this->pdo::PARAM_STR);
+    $query->bindParam(':idBrand', $idBrand, $this->pdo::PARAM_INT);
+    $query->execute();
+    $lastId = $this->pdo->lastInsertId();
+    return $lastId;
   }
 }

@@ -17,8 +17,6 @@ spl_autoload_register();
       <thead>
         <tr>
           <th scope="col">Titre</th>
-          <th scope="col">Marque</th>
-          <th scope="col">Modèle</th>
           <th scope="col">Commentaire</th>
           <th scope="col">Date</th>
           <th scope="col"></th>

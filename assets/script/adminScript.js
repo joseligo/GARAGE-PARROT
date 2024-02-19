@@ -30,6 +30,11 @@ inputBrand.addEventListener("change", (e) => {
     divNewBrand.classList.add("hidden");
     addNewBrand.disabled = true;
     addNewBrand.required = false;
+    inputModel.required = true;
+    inputModel.disabled = false;
+    divNewModel.classList.add("hidden");
+    addNewModel.disabled = true;
+    addNewModel.required = false;
     selectModel(e.target.value, inputModel);
   }
 });

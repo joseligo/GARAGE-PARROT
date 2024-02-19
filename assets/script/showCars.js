@@ -57,7 +57,7 @@ async function showCars(limit, page) {
     headers: { "Content-Type": "application/json", Accept: "application/json" },
   };
   let nbCars = await getNbCars();
-  let nbPage = nbCars / 6 + 1;
+  let nbPage = nbCars / 6 +1;
   createPagination(nbPage, "showCars");
   fetch(
     "./App/Api/CarsApibis.php?action=showAllCars&limit=" +
@@ -147,7 +147,7 @@ async function showCarsFilter(limit, page) {
   let formData = createFormData();
   let nbCars = await getNbCarsFilter(formData);
   console.log(nbCars);
-  let nbPage = nbCars / 6 + 1;
+  let nbPage = nbCars / 6 +1;
   createPagination(nbPage, "showCarsFilter");
   let option = {
     headers: { Accept: "application/json" },
