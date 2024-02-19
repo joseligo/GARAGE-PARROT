@@ -109,6 +109,7 @@ function createCard(element) {
   div2.appendChild(cardTitle);
   let paragraphCar = document.createElement("p");
   paragraphCar.className = "card-text";
+  let commentaire = decodeURIComponent(element.comment);
   paragraphCar.textContent = `${element.comment}`;
   div2.appendChild(paragraphCar);
   let buttonCar = document.createElement("a");

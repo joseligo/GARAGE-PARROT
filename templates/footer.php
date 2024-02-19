@@ -12,7 +12,7 @@
       <h5>Nous contacter</h5>
       <p>63 Rue de du garage, 31000 TOULOUSE</p>
       <p>02 99 73 61 52</p>
-      <p>contact@autoclassicgarage.fr</p>
+      <p>contact@vparrot.fr</p>
     </div>
   </div>
 

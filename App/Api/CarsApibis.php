@@ -80,7 +80,8 @@ class CarsApi extends Repository
 
     $listCars = [];
     foreach ($response as $car) {
-      $car = new Car($car['id_car'], $car['brand'], $car['model'], $car['carburetion'], $car['km'], $car['year'], $car['price'], $car['comment'], $car['date'], $car['main_image'], [], []);
+      $comment = htmlspecialchars_decode($car['comment']);
+      $car = new Car($car['id_car'], $car['brand'], $car['model'], $car['carburetion'], $car['km'], $car['year'], $car['price'], $comment, $car['date'], $car['main_image'], [], []);
       $listCars[] = $car->jsonSerialize();
     }
     $listCarsJSON = json_encode($listCars);
