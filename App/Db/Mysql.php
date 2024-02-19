@@ -14,7 +14,7 @@ class Mysql {
 
     private function __construct() 
     {
-      $conf = require_once _ROOTPATH_.'/configDb.php';
+      $conf = require_once ('./configDb.php');
 
       if(isset($conf['db_name'])) {
         $this->db_name = $conf['db_name'];

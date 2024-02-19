@@ -2,6 +2,9 @@
 
 namespace App\Repository;
 
+require_once('./App/Entity/Contact.php');
+
+
 use App\Entity\Contact;
 
 

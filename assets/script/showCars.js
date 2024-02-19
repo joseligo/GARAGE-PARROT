@@ -1,4 +1,3 @@
-let myList = document.getElementById("test");
 let currentPage = 1;
 console.log(currentPage);
 let cardContainer = document.getElementById("card-car-container");

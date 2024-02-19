@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Repository;
+require_once('./App/Entity/Timetable.php');
 
 use App\Entity\Timetable;
 

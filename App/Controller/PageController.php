@@ -2,6 +2,11 @@
 
 namespace App\Controller;
 
+require_once('./App/Repository/AvisRepository.php');
+require_once('./App/Repository/CarsRepository.php');
+require_once('./App/Repository/ServicesRepository.php');
+require_once('./App/Repository/TimetableRepository.php');
+
 use App\Repository\AvisRepository;
 use App\Repository\CarsRepository;
 use App\Repository\ServicesRepository;

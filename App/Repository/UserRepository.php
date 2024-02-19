@@ -2,6 +2,8 @@
 
 namespace App\Repository;
 
+require_once('./App/Repository/Repository.php');
+require_once('./App/Entity/User.php');
 
 use App\Entity\User;
 

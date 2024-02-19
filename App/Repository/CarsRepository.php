@@ -2,6 +2,9 @@
 
 namespace App\Repository;
 
+require_once('./App/Entity/Car.php');
+
+
 use App\Entity\Car;
 use App\Tools\StringTools;
 

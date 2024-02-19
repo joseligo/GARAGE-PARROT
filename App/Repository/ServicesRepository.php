@@ -2,6 +2,9 @@
 
 namespace App\Repository;
 
+require_once('./App/Entity/Service.php');
+
+
 use App\Entity\Service;
 use App\Tools\StringTools;
 

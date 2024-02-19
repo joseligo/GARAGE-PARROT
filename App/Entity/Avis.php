@@ -1,6 +1,8 @@
 <?php
 namespace App\Entity;
 
+require_once('./App/Tools/StringTools.php');
+
 use App\Tools\StringTools;
 
 

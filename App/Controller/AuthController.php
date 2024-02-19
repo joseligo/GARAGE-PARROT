@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
-use App\Db\Mysql;
+require_once('./App/Repository/UserRepository.php');
+require_once('./App/Repository/Repository.php');
+require_once('./App/Repository/TimetableRepository.php');
+
 use App\Repository\UserRepository;
 use App\Repository\TimetableRepository;
 

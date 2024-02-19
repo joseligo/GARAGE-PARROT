@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+require_once('./App/Controller/AuthController.php');
+
 use App\Controller\PageController;
 use App\Controller\AdminController;
 use App\Controller\AnnonceController;

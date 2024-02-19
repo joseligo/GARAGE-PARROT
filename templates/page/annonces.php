@@ -32,8 +32,8 @@ require_once _ROOTPATH_ . '/templates/header.php';
 
 </div>
 
-<script type="text/javascript" src="./assets/script/showCars.js"></script>
-<script type="text/javascript" src="./assets/script/doubleRange.js"></script>
+<script type="text/javascript" src="../../assets/script/showCars.js"></script>
+<script type="text/javascript" src="../../assets/script/doubleRange.js"></script>
 
 <?php
 require_once _ROOTPATH_ . '/templates/footer.php';

@@ -2,6 +2,10 @@
 
 namespace App\Controller;
 
+require_once('./App/Repository/ContactRepository.php');
+require_once('./App/Repository/TimetableRepository.php');
+
+
 use App\Repository\AvisRepository;
 use App\Repository\ContactRepository;
 use App\Repository\TimetableRepository;

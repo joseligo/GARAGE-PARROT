@@ -1,6 +1,8 @@
 <?php
 spl_autoload_register();
 require_once './App/Db/Mysql.php';
+require_once './App/Entity/User.php';
+require_once './App/Tools/NavigationTools.php';
 
 use App\Entity\User;
 use App\Tools\NavigationTools;

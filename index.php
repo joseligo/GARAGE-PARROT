@@ -1,5 +1,16 @@
 <?php
 require_once __DIR__.'/config.php';
+require_once __DIR__.'/App/Controller/Controller.php';
+require_once __DIR__.'/App/Controller/PageController.php';
+require_once __DIR__.'/App/Controller/AdminController.php';
+require_once __DIR__.'/App/Controller/AnnonceController.php';
+require_once __DIR__.'/App/Controller/AvisController.php';
+require_once __DIR__.'/App/Controller/ContactController.php';
+require_once __DIR__.'/App/Controller/PageController.php';
+require_once __DIR__.'/App/Controller/ServiceController.php';
+require_once __DIR__.'/App/Controller/UserController.php';
+require_once __DIR__.'/App/Db/Mysql.php';
+
 
 // Sécurise le cookie de session avec httponly
 session_set_cookie_params([
