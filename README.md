@@ -13,8 +13,8 @@ Pour son garage ouvert depuis 2 ans, Vincent Parrot souhaite un site web lui per
     * user@test.com, mot de passe : test (à ne pas utiliser sur un site en production)
     * admin@test.com, mot de passe : test (à ne pas utiliser sur un site en production)
 * Modifiez le fichier App/Db/Mysql en y ajoutant la configuration de votre base de données (lignes 17 à 21 :
-* 
-    $conf = ['db_name' => 'garage_parrot',
+
+  $conf = ['db_name' => 'garage_parrot',
   
         'db_user' => 'root',
   
