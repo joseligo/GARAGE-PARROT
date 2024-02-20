@@ -143,6 +143,7 @@ class AnnonceController extends Controller
         // $carJSON = $car->jsonSerialize();
         $listCarburation = $carRepository->getCarburetion();
         $listBrand = $carRepository->getBrand();
+        
 
         $this->render('page/adminEditAnnonce', [
             "car" => $car,

@@ -9,7 +9,7 @@
         <select id="brand" name="brand" class="form-select" required>
           <option value="">--Marque du véhicule</option>
           <?php foreach ($listBrand as $brand) { ?>
-            <option value="<?= $brand['idBrand'] ?>" <?php echo ($values && $car->getBrand() === $brand['nameBrand']) ? 'selected' : '' ?>><?= $brand['nameBrand'] ?></option>
+            <option value="<?= $brand['idBrand'] ?>" <?php echo ($values && $car->getBrand() == $brand['nameBrand']) ? 'selected' : '' ?>><?= $brand['nameBrand'] ?></option>
           <?php } ?>
           <option value="newBrand">--Ajouter une marque</option>
         </select>
@@ -76,10 +76,10 @@
             </div>
         <?php }
         } ?>
-        </div>
-        <label for="secondaryPicture">Photos complementaires</label>
-        <input type="file" id="secondaryPicture" name="secondaryPicture[]" multiple accept="image/png, image/jpeg" />
-      
+      </div>
+      <label for="secondaryPicture">Photos complementaires</label>
+      <input type="file" id="secondaryPicture" name="secondaryPicture[]" multiple accept="image/png, image/jpeg" />
+
     </div>
     <input type="submit" name="saveCar" value="Envoyer" class="btn btn-secondary mt-3">
   </div>

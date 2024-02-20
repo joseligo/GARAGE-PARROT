@@ -2,8 +2,7 @@
 
 namespace App\Entity;
 
-class Car 
-// implements \JsonSerializable
+class Car implements \JsonSerializable
 {
   protected int $idCar;
   protected string $brand;

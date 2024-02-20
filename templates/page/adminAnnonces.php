@@ -1,6 +1,7 @@
 <?php
 require_once _ROOTPATH_ . '/templates/headerAdmin.php';
 require_once 'config.php';
+
 spl_autoload_register();
 ?>
 <h2 class="mt-2">Nouvelle annonce</h2>

@@ -1,5 +1,6 @@
-let car = JSON.parse(document.querySelector("[data-objet-php]").getAttribute("data-objet-php"));
-console.log(car);
+let car = document.querySelector("[data-objet-php]").getAttribute("data-objet-php");
+const carObject = JSON.parse(car);
+console.log(carObject);
 
 // Permettre l'ajout d'une nouvelle marque lors de la création d'une annonce
 let inputBrand = document.getElementById("brand");
@@ -7,11 +8,13 @@ let divNewBrand = document.getElementById("addBrand");
 let addNewBrand = document.getElementById("newBrand");
 let inputModel = document.getElementById("model");
 
-if(car.idCar) {
-  selectModel(inputBrand.value, inputModel);
+window.addEventListener("load", function(){
+if(car) {
+  selectModel(inputBrand.value, inputModel)
 } else {
   console.log('ok');
 }
+},false)
 
 inputBrand.addEventListener("change", (e) => {
   divNewModel.classList.add("hidden");
@@ -65,7 +68,7 @@ function selectModel(value, champ) {
           let option = document.createElement("option");
           option.value = element.idModel;
           option.textContent = element.model;
-          car.model === element.model ? option.selected = true : option.selected = false ;
+          carObject.model === element.model ? option.selected = true : option.selected = false ;
           champ.appendChild(option);
         });
         let option2 = document.createElement("option");

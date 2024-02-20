@@ -14,7 +14,11 @@ class Mysql {
 
     private function __construct() 
     {
-      $conf = require_once ('./configDb.php');
+      $conf = ['db_name' => 'garage_parrot',
+      'db_user' => 'root',
+      'db_password' => '',
+      'db_port' => '3306',
+      'db_host' => 'localhost'];
 
       if(isset($conf['db_name'])) {
         $this->db_name = $conf['db_name'];
